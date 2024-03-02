@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Safari 7.1+ only */
+_::-webkit-full-page-media, _:future, :root tr:has(.full-link) {
+	/* safari 17 bug https://bugs.webkit.org/show_bug.cgi?id=240961 */
+	transform: scale(1);
+}
+
+
+.full-link::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+@layer base {
+	.container { @apply mx-auto sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] px-2 sm:px-8; }
+
+	.text { @apply text-gray-700 dark:text-gray-300; }
+	.text-muted { @apply text-neutral-600 dark:text-neutral-400 }
+
+	.bg { @apply bg-white dark:bg-gray-950; }
+	.bg-accent { @apply bg-gray-100 dark:bg-gray-900; }
+}
+
+@layer components {
+	.btn {
+		all: unset;
+
+		@apply px-4 py-2 text-sm font-semibold shadow rounded text-center;
+
+		&:disabled, &.disabled {
+			@apply cursor-not-allowed text-muted disabled:bg-transparent
+		}
+
+		&:not([disabled]):not(.disabled):not([readonly]) {
+			@apply
+				cursor-pointer
+				active:outline active:outline-2 active:outline-offset-2
+				focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ;
+		}
+	}
+	.btn-primary {
+		@apply bg-primary text-white;
+		&:not([disabled]):not(.disabled):not([readonly]) {
+			@apply
+				hover:bg-primary-accent
+				dark:hover:bg-primary-accent-dark
+				focus-visible:outline-primary active:outline-primary
+				dark:focus-visible:outline-primary-dark dark:active:outline-primary-dark;
+		}
+	}
+	.btn-success {
+		@apply bg-success text-white;
+		&:not([disabled]):not(.disabled):not([readonly]) {
+			@apply
+				hover:bg-success-accent
+				dark:hover:bg-success-accent-dark
+				focus-visible:outline-success active:outline-success
+				dark:focus-visible:outline-success dark:active:outline-success-dark;
+		}
+	}
+
+	.form {
+		@apply bg-accent grid shadow-sm ring-1 ring-primary dark:ring-primary-dark sm:rounded-xl p-4;
+
+		label {
+			@apply flex flex-col w-full gap-2 my-4;
+
+			h5 {
+				@apply font-semibold leading-6;
+			}
+		}
+
+		input, select, textarea {
+			@apply
+				p-2 rounded shadow
+				bg-transparent
+				placeholder:text-gray-400 dark:placeholder:text-gray-800
+				sm:text-sm sm:leading-6 sm:max-w-md
+				ring-1 ring-inset ring-gray-300
+				focus:ring-0 
+				focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600
+		}
+	}
+
+	.table {
+		@apply min-w-full;
+
+		thead > tr th:first-child, tbody > tr td:first-child { @apply pl-4; }
+
+		thead tr th { @apply p-4 text-left text-sm font-semibold; }
+
+		td:first-child, th:first-child { @apply rounded-l; }
+		td:last-child, th:last-child { @apply rounded-r; }
+	}
+
+	.table-links tr { @apply relative; }
+}

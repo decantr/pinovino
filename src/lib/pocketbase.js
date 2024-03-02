@@ -1,7 +1,7 @@
 import PocketBase from 'pocketbase';
 import { writable } from 'svelte/store';
 
-export const url = 'https://pinovino.pockethost.io/';
+export const url = 'http://127.0.0.1:8090/';
 export const pb = new PocketBase(url); // remote
 // const pb = new PocketBase('http://127.0.0.1:8090'); // local
 

@@ -8,19 +8,18 @@
 	<Header />
 </header>
 
-<main>
+<main class="container">
 	<Login />
 
-	<section>
-	{#if $currentUser}
-		<h1>Welcome to pinovino</h1>
+	<section class="my-auto p-8">
+		{#if $currentUser}
+			<h1 class="text-4xl">Welcome to <span class="text-primary">pinovino</span></h1>
 
-		<p>
-			<a href="/wines">View Wines</a>
-			<a href="/ratings">View Ratings</a>
-			<a href="/wines/create">Add new Wine</a>
-		</p>
-	{/if}
-
+			<div class="my-8 flex gap-4 justify-center">
+				<a class="btn btn-primary" href="/wines">View Wines</a>
+				<a class="btn btn-primary" href="/ratings">View Ratings</a>
+				<a class="btn btn-success" href="/wines/create">Add new Wine</a>
+			</div>
+		{/if}
 	</section>
 </main>

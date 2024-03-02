@@ -28,7 +28,7 @@
 	<a href="/wines">Back to wines</a>
 </header>
 
-<main>
+<main class="container">
 	<section>
 		<aside>
 			{#if data.wine?.image}
