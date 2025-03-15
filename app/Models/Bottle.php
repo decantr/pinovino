@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\WineType;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Bottle extends Model
 {
@@ -18,4 +19,9 @@ class Bottle extends Model
 	protected $casts = [
 		'wine_type' => WineType::class,
 	];
+
+	public function grapes(): BelongsToMany
+	{
+		return $this->belongsToMany(Grape::class);
+	}
 }
