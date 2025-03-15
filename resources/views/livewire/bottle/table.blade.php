@@ -65,7 +65,7 @@
 									<flux:menu.item icon="arrow-top-right-on-square" wire:click="open({{ $row->id }})">View</flux:menu.item>
 								@endcan
 								@can('update', $row)
-									<flux:menu.item icon="pencil" wire:click="open({{ $row->id }})">Edit</flux:menu.item>
+									<flux:menu.item icon="pencil" wire:click="$dispatch('edit-bottle', { bottle: {{ $row->id }} })">Edit</flux:menu.item>
 								@endcan
 							</x-pv.dropdown>
 						@endcanany

@@ -17,9 +17,9 @@ return new class extends Migration
 			$table->string('name');
 			$table->integer('vintage');
 			$table->string('wine_type');
-			$table->string('country');
-			$table->string('region');
 
+			$table->string('country')->nullable();
+			$table->string('region')->nullable();
 			$table->text('description')->nullable();
 
 			$table->timestamps();

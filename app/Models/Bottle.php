@@ -16,9 +16,10 @@ class Bottle extends Model
 	protected $fillable = [
 		'name',
 		'vintage',
-		'type',
+		'wine_type',
 		'country',
 		'region',
+		'description',
 	];
 
 	protected $casts = [

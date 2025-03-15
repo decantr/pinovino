@@ -6,9 +6,11 @@ use App\Models\Bottle;
 use App\Traits\WithFilters;
 use App\Traits\WithSorting;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+#[On('refresh-table')]
 class Table extends Component
 {
 	use WithSorting;
