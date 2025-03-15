@@ -16,8 +16,7 @@ class PurchaseFactory extends Factory
 	 *
 	 * @return array<string, mixed>
 	 */
-	public function definition(): array
-	{
+	public function definition(): array {
 		return [
 			'user_id' => User::factory(),
 			'bottle_id' => Bottle::factory(),
@@ -27,19 +26,17 @@ class PurchaseFactory extends Factory
 		];
 	}
 
-	public function setBottle(Bottle $bottle): self
-	{
+	public function setBottle(Bottle $bottle): self {
 		return $this->state(
-			fn(array $attributes) => [
+			fn (array $attributes) => [
 				'bottle_id' => $bottle,
 			]
 		);
 	}
 
-	public function setUser(User $user): self
-	{
+	public function setUser(User $user): self {
 		return $this->state(
-			fn(array $attributes) => [
+			fn (array $attributes) => [
 				'user_id' => $user,
 			]
 		);

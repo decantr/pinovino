@@ -15,8 +15,7 @@ class Grape extends Model
 		'name',
 	];
 
-	public function bottles(): BelongsToMany
-	{
+	public function bottles(): BelongsToMany {
 		return $this->belongsToMany(Bottle::class);
 	}
 }

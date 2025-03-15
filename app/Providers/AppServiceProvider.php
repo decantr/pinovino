@@ -15,8 +15,7 @@ class AppServiceProvider extends ServiceProvider
 	/**
 	 * Bootstrap any application services.
 	 */
-	public function boot(): void
-	{
+	public function boot(): void {
 		/** search a text field for a case insensitive string */
 		Builder::macro('search', function ($field, $string, $or = 'and') {
 			/** @var \Illuminate\Database\Query\Builder $this */

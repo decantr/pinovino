@@ -26,18 +26,15 @@ class Rating extends Model
 		'date' => 'datetime',
 	];
 
-	public function user(): BelongsTo
-	{
+	public function user(): BelongsTo {
 		return $this->belongsTo(User::class);
 	}
 
-	public function bottle(): BelongsTo
-	{
+	public function bottle(): BelongsTo {
 		return $this->belongsTo(Bottle::class);
 	}
 
-	public function purchase(): BelongsTo
-	{
+	public function purchase(): BelongsTo {
 		return $this->belongsTo(Purchase::class);
 	}
 }

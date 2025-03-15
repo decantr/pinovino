@@ -14,8 +14,7 @@ class GrapeFactory extends Factory
 	 *
 	 * @return array<string, mixed>
 	 */
-	public function definition(): array
-	{
+	public function definition(): array {
 		return [
 			'name' => $this->faker->city(),
 		];

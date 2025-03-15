@@ -5,7 +5,7 @@ use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn() => view('welcome'))->name('home');
+Route::get('/', fn () => view('welcome'))->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 	Route::view('dashboard', 'dashboard')->name('dashboard');
@@ -22,4 +22,4 @@ Route::middleware(['auth', 'verified'])->group(function () {
 	Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

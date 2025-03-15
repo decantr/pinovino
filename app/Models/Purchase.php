@@ -26,18 +26,15 @@ class Purchase extends Model
 		'cost' => MoneyCast::class,
 	];
 
-	public function user(): BelongsTo
-	{
+	public function user(): BelongsTo {
 		return $this->belongsTo(User::class);
 	}
 
-	public function bottle(): BelongsTo
-	{
+	public function bottle(): BelongsTo {
 		return $this->belongsTo(Bottle::class);
 	}
 
-	public function ratings(): HasMany
-	{
+	public function ratings(): HasMany {
 		return $this->hasMany(Rating::class);
 	}
 }

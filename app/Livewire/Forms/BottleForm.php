@@ -10,7 +10,7 @@ use Livewire\Form;
 
 class BottleForm extends Form
 {
-	public Bottle|null $bottle = null;
+	public ?Bottle $bottle = null;
 
 	#[Validate('required|string')]
 	public $name;
@@ -30,14 +30,12 @@ class BottleForm extends Form
 	#[Validate('nullable|string')]
 	public $description;
 
-	public function set(Bottle $bottle): void
-	{
+	public function set(Bottle $bottle): void {
 		$this->bottle = $bottle;
 		$this->fill($bottle->toArray());
 	}
 
-	public function save(): void
-	{
+	public function save(): void {
 		$this->validate();
 
 		if ($this->bottle) {

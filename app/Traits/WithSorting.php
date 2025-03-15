@@ -8,8 +8,7 @@ namespace App\Traits;
  */
 trait WithSorting
 {
-	public function sort(string $field): void
-	{
+	public function sort(string $field): void {
 		if ($this->sortBy === $field) {
 			$this->sortDirection = $this->sortDirection === 'asc' ? 'desc' : 'asc';
 		} else {

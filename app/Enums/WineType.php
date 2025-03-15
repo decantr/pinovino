@@ -9,8 +9,7 @@ enum WineType: string
 	case Rose = 'rose';
 	case Sparkling = 'sparkling';
 
-	public function colour(): string
-	{
+	public function colour(): string {
 		return match ($this) {
 			self::Red => BadgeColour::Red->value,
 			self::White => BadgeColour::Zinc->value,

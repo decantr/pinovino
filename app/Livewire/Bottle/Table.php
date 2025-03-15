@@ -13,23 +13,24 @@ use Livewire\WithPagination;
 #[On('refresh-table')]
 class Table extends Component
 {
-	use WithSorting;
 	use WithFilters;
 	use WithPagination;
+	use WithSorting;
 
 	// meta
 	public $perPage = 15;
 
 	// filters
 	public $search;
+
 	public BottleFilter $filters;
 
 	// sorting
 	public $sortBy = 'name';
+
 	public $sortDirection = 'asc';
 
-	public function render()
-	{
+	public function render() {
 		$years = Bottle::groupBy('vintage')->orderByDesc('vintage')->pluck('vintage');
 
 		return view('livewire.bottle.table', [
@@ -38,15 +39,13 @@ class Table extends Component
 		]);
 	}
 
-	protected function query(): Builder
-	{
+	protected function query(): Builder {
 		$query = Bottle::query()
 			->orderBy($this->sortBy, $this->sortDirection)
 			->search('name', $this->search);
 
 		$query = $this->filters->applyVintage($query);
-		$query = $this->filters->applyWineType($query);
 
-		return $query;
+		return $this->filters->applyWineType($query);
 	}
 }

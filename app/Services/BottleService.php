@@ -5,8 +5,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class BottleService
 {
-	public static function getQuery(): Builder
-	{
+	public static function getQuery(): Builder {
 		return Bottle::query();
 	}
 }

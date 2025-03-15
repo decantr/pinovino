@@ -8,26 +8,22 @@ use Flux\Flux;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-/** @package App\Livewire\Bottle */
 class AddUpdate extends Component
 {
 	public BottleForm $form;
 
-	public function render()
-	{
+	public function render() {
 		return view('livewire.bottle.add-update');
 	}
 
 	#[On('create-bottle')]
-	public function create()
-	{
+	public function create() {
 		$this->form->reset();
 		Flux::modal('modal-bottle-form')->show();
 	}
 
 	#[On('edit-bottle')]
-	public function edit(Bottle $bottle)
-	{
+	public function edit(Bottle $bottle) {
 		$this->form->set($bottle);
 		Flux::modal('modal-bottle-form')->show();
 	}

@@ -6,8 +6,7 @@ use Livewire\Component;
 
 class Page extends Component
 {
-	public function render()
-	{
+	public function render() {
 		return view('livewire.bottle.page');
 	}
 }

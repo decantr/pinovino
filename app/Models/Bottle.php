@@ -26,18 +26,15 @@ class Bottle extends Model
 		'wine_type' => WineType::class,
 	];
 
-	public function grapes(): BelongsToMany
-	{
+	public function grapes(): BelongsToMany {
 		return $this->belongsToMany(Grape::class);
 	}
 
-	public function purchases(): HasMany
-	{
+	public function purchases(): HasMany {
 		return $this->hasMany(Purchase::class);
 	}
 
-	public function ratings(): HasMany
-	{
+	public function ratings(): HasMany {
 		return $this->hasMany(Rating::class);
 	}
 }
