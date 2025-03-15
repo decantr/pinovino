@@ -1,0 +1,1 @@
+<flux:input :$attributes icon="magnifying-glass" wire:model.live.debounce="search" />

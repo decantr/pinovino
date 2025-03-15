@@ -8,7 +8,7 @@
 		<flux:spacer />
 
 		<div>
-			<flux:button icon="plus" wire:click="addNew">
+			<flux:button icon="plus" wire:click="$dispatch('add-bottle')">
 				New Bottle
 			</flux:button>
 		</div>

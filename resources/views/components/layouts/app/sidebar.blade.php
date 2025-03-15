@@ -18,8 +18,8 @@
 				<flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
 				<flux:navlist.item
 					icon="list-bullet"
-					:href="route('dashboard')"
-					:current="request()->routeIs('')"
+					:href="route('bottle.index')"
+					:current="request()->routeIs('bottle.*')"
 					wire:navigate>
 					Wine List
 				</flux:navlist.item>
