@@ -19,7 +19,7 @@
 	<livewire:bottle.table />
 
 	<flux:modal name="modal-bottle-form" class="max-w-2xl! w-full">
-		<livewire:bottle.add-update />
+		<livewire:bottle.add-update lazy />
 
 		<x-pv.modal.footer form="bottle-form" class="mt-12"/>
 	</flux:modal>
