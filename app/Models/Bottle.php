@@ -3,12 +3,16 @@
 namespace App\Models;
 
 use App\Enums\WineType;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Bottle extends Model
 {
+	/** @use HasFactory<\Database\Factories\BottleFactory> */
+	use HasFactory;
+
 	protected $fillable = [
 		'name',
 		'vintage',

@@ -1,0 +1,60 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Bottle;
+use App\Models\Purchase;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Rating>
+ */
+class RatingFactory extends Factory
+{
+	/**
+	 * Define the model's default state.
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function definition(): array
+	{
+		return [
+			'user_id' => User::factory(),
+			'bottle_id' => Bottle::factory(),
+			'purchase_id' => Purchase::factory(),
+
+			'rating' => $this->faker->numberBetween(1, 10),
+			'date' => $this->faker->date(),
+			'decant_duration' => null,
+			'notes' => $this->faker->paragraph(),
+		];
+	}
+
+	public function setPurchase(Purchase $purchase): self
+	{
+		return $this->state(
+			fn(array $attributes) => [
+				'purchase_id' => $purchase,
+			]
+		);
+	}
+
+	public function setBottle(Bottle $bottle): self
+	{
+		return $this->state(
+			fn(array $attributes) => [
+				'bottle_id' => $bottle,
+			]
+		);
+	}
+
+	public function setUser(User $user): self
+	{
+		return $this->state(
+			fn(array $attributes) => [
+				'user_id' => $user,
+			]
+		);
+	}
+}
