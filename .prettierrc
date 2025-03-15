@@ -1,0 +1,24 @@
+{
+  "plugins": ["@shufo/prettier-plugin-blade"],
+  "overrides": [
+    {
+      "files": ["*.blade.php"],
+      "options": {
+        "parser": "blade",
+        "indentSize": 2,
+        "tabWidth": 1,
+        "useTabs": true,
+        "trailingComma": "es5",
+        "bracketSameLine": false,
+        "wrapAttributes": "force-expand-multiline",
+        "wrapAttributesMinAttrs": 4,
+        "sortTailwindcssClasses": true,
+        "sortHtmlAttributes": "none",
+        "noPhpSyntaxCheck": false,
+        "indentInnerHtml": true,
+        "componentPrefix": "x-,livewire:,flux:"
+      }
+    }
+  ],
+  "bracketSameLine": false
+}
