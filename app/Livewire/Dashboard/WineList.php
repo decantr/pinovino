@@ -3,6 +3,7 @@
 namespace App\Livewire\Dashboard;
 
 use App\Models\Bottle;
+use Flux\Flux;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Livewire\Component;
@@ -19,12 +20,18 @@ class WineList extends Component
 		]);
 	}
 
-	public function query(): Builder
+	protected function query(): Builder
 	{
 		return Bottle::query()
-			->whereHas(
-				'purchases',
-				fn(Builder|HasMany $q) => $q->where('user_id', \auth()->id())
-			);
+			// ->whereHas(
+			// 	'purchases',
+			// 	fn(Builder|HasMany $q) => $q->where('user_id', \auth()->id())
+			// )
+		;
+	}
+
+	public function addNew()
+	{
+		Flux::toast('Coming soon');
 	}
 }
