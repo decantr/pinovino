@@ -39,6 +39,7 @@ class AddUpdate extends Component
 
 		$this->form->reset();
 		Flux::modal('modal-bottle-form')->close();
-		$this->dispatch('refresh-table');
+		$this->dispatch('refresh-bottle-table');
+		$this->dispatch('refresh-bottle-list');
 	}
 }

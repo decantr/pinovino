@@ -23,6 +23,7 @@ class PurchaseFactory extends Factory
 			'date' => $this->faker->dateTime(),
 			'cost' => $this->faker->numberBetween(1, 100),
 			'store' => $this->faker->company(),
+			'notes' => $this->faker->paragraph(),
 		];
 	}
 

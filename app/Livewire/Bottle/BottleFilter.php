@@ -26,4 +26,11 @@ class BottleFilter extends Form
 
 		return $query->whereIn('wine_type', $this->wine_type);
 	}
+
+	public function applyOwner(Builder $query): Builder {
+		return $query->whereHas(
+			'purchases',
+			fn (Builder $q) => $q->where('user_id', \auth()->id())
+		);
+	}
 }

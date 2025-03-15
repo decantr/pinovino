@@ -20,8 +20,18 @@
 					icon="list-bullet"
 					:href="route('bottle.index')"
 					:current="request()->routeIs('bottle.*')"
-					wire:navigate>
+					wire:navigate
+				>
 					Wine List
+				</flux:navlist.item>
+
+				<flux:navlist.item
+					icon="banknotes"
+					:href="route('purchase.index')"
+					:current="request()->routeIs('purchase.*')"
+					wire:navigate
+				>
+					Purchases
 				</flux:navlist.item>
 			</flux:navlist.group>
 		</flux:navlist>

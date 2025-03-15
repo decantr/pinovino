@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Bottle;
+use App\Models\Purchase;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -22,5 +23,6 @@ class DatabaseSeeder extends Seeder
 		]);
 
 		Bottle::factory(100)->create();
+		Purchase::factory(100)->create();
 	}
 }

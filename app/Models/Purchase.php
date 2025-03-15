@@ -19,6 +19,7 @@ class Purchase extends Model
 		'date',
 		'cost',
 		'store',
+		'notes',
 	];
 
 	protected $casts = [

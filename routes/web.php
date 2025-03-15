@@ -14,6 +14,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		->can('view-any', \App\Models\Bottle::class)
 		->name('bottle.index');
 
+	Route::get('purchase', \App\Livewire\Purchase\Page::class)
+		->can('view-any', \App\Models\Purchase::class)
+		->name('purchase.index');
+
 	// from starter kit
 	Route::redirect('settings', 'settings/profile');
 

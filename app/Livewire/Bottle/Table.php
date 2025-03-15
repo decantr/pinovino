@@ -10,7 +10,7 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-#[On('refresh-table')]
+#[On('refresh-bottle-table')]
 class Table extends Component
 {
 	use WithFilters;
@@ -19,6 +19,8 @@ class Table extends Component
 
 	// meta
 	public $perPage = 15;
+
+	public $apply = [];
 
 	// filters
 	public $search;
@@ -45,6 +47,10 @@ class Table extends Component
 			->search('name', $this->search);
 
 		$query = $this->filters->applyVintage($query);
+
+		if (! empty($this->apply)) {
+			$query->apply($this->filters, $this->apply);
+		}
 
 		return $this->filters->applyWineType($query);
 	}

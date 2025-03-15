@@ -33,5 +33,18 @@ class AppServiceProvider extends ServiceProvider
 				}
 			});
 		});
+
+		/** fluently apply a filter from a provided filters object */
+		Builder::macro('apply', function ($filters, $name) {
+			if (\is_array($name)) {
+				foreach ($name as $n) {
+					$filters->{$n}($this);
+				}
+
+				return $this;
+			}
+
+			return $filters->{$name}($this);
+		});
 	}
 }

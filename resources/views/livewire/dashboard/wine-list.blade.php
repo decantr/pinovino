@@ -16,7 +16,7 @@
 		</div>
 	</div>
 
-	<livewire:bottle.table perPage="5" />
+	<livewire:bottle.table perPage="5" :apply="['applyOwner']" />
 
 	<flux:modal name="modal-bottle-form" class="max-w-2xl! w-full">
 		<livewire:bottle.add-update lazy />

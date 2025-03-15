@@ -23,6 +23,8 @@ return new class extends Migration
 
 			$table->string('store')->nullable();
 
+			$table->text('notes')->nullable();
+
 			$table->timestamps();
 		});
 	}

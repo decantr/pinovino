@@ -1,6 +1,6 @@
 @props(['placeholder' => 'Search...'])
 
-<div class="flex gap-3">
+<div {{ $attributes->class(['flex gap-3']) }}>
 	<flux:spacer />
 
 	<x-pv.search :$placeholder class="max-w-sm" />
