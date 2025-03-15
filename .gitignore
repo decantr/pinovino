@@ -21,3 +21,8 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+database/*.sqlite
+bun.lock
+composer.lock
+package-lock.json
