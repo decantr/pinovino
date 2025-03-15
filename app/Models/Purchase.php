@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Purchase extends Model
 {
 	protected $fillable = [
+		'user_id',
 		'bottle_id',
 		'date',
 		'cost',
@@ -20,6 +21,11 @@ class Purchase extends Model
 		'date' => 'datetime',
 		'cost' => MoneyCast::class,
 	];
+
+	public function user(): BelongsTo
+	{
+		return $this->belongsTo(User::class);
+	}
 
 	public function bottle(): BelongsTo
 	{
