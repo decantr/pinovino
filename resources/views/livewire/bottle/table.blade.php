@@ -59,10 +59,16 @@
 					</flux:table.cell>
 
 					<flux:table.cell>
-						<x-pv.dropdown>
-							<flux:menu.item icon="arrow-top-right-on-square" wire:click="open({{ $row->id }})">View</flux:menu.item>
-							<flux:menu.item icon="pencil" wire:click="open({{ $row->id }})">Edit</flux:menu.item>
-						</x-pv.dropdown>
+						@canany(['view', 'update'], $row)
+							<x-pv.dropdown>
+								@can('view', $row)
+									<flux:menu.item icon="arrow-top-right-on-square" wire:click="open({{ $row->id }})">View</flux:menu.item>
+								@endcan
+								@can('update', $row)
+									<flux:menu.item icon="pencil" wire:click="open({{ $row->id }})">Edit</flux:menu.item>
+								@endcan
+							</x-pv.dropdown>
+						@endcanany
 					</flux:table.cell>
 				</flux:table.row>
 			@empty

@@ -8,9 +8,11 @@
 		<flux:spacer />
 
 		<div>
-			<flux:button icon="plus" wire:click="$dispatch('add-bottle')">
-				New Bottle
-			</flux:button>
+			@can('create', \App\Models\Bottle::class)
+				<flux:button icon="plus" wire:click="$dispatch('add-bottle')">
+					New Bottle
+				</flux:button>
+			@endcan
 		</div>
 	</div>
 
