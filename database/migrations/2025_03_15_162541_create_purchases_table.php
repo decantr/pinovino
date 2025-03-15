@@ -1,0 +1,37 @@
+<?php
+
+use App\Models\Bottle;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use PhpParser\Node\Expr\Cast\Bool_;
+
+return new class extends Migration
+{
+	/**
+	 * Run the migrations.
+	 */
+	public function up(): void
+	{
+		Schema::create('purchases', function (Blueprint $table) {
+			$table->id();
+
+			$table->foreignIdFor(Bottle::class)->constrained();
+
+			$table->dateTimeTz('date');
+			$table->integer('cost');
+
+			$table->string('store')->nullable();
+
+			$table->timestamps();
+		});
+	}
+
+	/**
+	 * Reverse the migrations.
+	 */
+	public function down(): void
+	{
+		Schema::dropIfExists('purchases');
+	}
+};

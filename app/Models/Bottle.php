@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\WineType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Bottle extends Model
 {
@@ -23,5 +24,10 @@ class Bottle extends Model
 	public function grapes(): BelongsToMany
 	{
 		return $this->belongsToMany(Grape::class);
+	}
+
+	public function purchases(): HasMany
+	{
+		return $this->hasMany(Purchase::class);
 	}
 }
