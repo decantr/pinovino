@@ -26,3 +26,4 @@ database/*.sqlite
 bun.lock
 composer.lock
 package-lock.json
+.php-cs-fixer.cache
