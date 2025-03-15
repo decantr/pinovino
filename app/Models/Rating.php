@@ -2,32 +2,39 @@
 
 namespace App\Models;
 
-use App\Casts\MoneyCast;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Purchase extends Model
+class Rating extends Model
 {
 	protected $fillable = [
+		'user_id',
 		'bottle_id',
+		'purchase_id',
+		'rating',
 		'date',
-		'cost',
-		'store',
+		'decant_duration',
+		'notes',
 	];
 
 	protected $casts = [
+		'rating' => 'integer',
+		'decant_duration' => 'integer',
 		'date' => 'datetime',
-		'cost' => MoneyCast::class,
 	];
+
+	public function user(): BelongsTo
+	{
+		return $this->belongsTo(User::class);
+	}
 
 	public function bottle(): BelongsTo
 	{
 		return $this->belongsTo(Bottle::class);
 	}
 
-	public function ratings(): HasMany
+	public function purchase(): BelongsTo
 	{
-		return $this->hasMany(Rating::class);
+		return $this->belongsTo(Purchase::class);
 	}
 }
