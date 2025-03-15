@@ -15,63 +15,60 @@ use Livewire\Component;
 #[Layout('components.layouts.auth')]
 class Login extends Component
 {
-    #[Validate('required|string|email')]
-    public string $email = '';
+	#[Validate('required|string|email')]
+	public string $email = '';
 
-    #[Validate('required|string')]
-    public string $password = '';
+	#[Validate('required|string')]
+	public string $password = '';
 
-    public bool $remember = false;
+	public bool $remember = false;
 
-    /**
-     * Handle an incoming authentication request.
-     */
-    public function login(): void
-    {
-        $this->validate();
+	/**
+	 * Handle an incoming authentication request.
+	 */
+	public function login(): void {
+		$this->validate();
 
-        $this->ensureIsNotRateLimited();
+		$this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
-            RateLimiter::hit($this->throttleKey());
+		if (! Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
+			RateLimiter::hit($this->throttleKey());
 
-            throw ValidationException::withMessages([
-                'email' => __('auth.failed'),
-            ]);
-        }
+			throw ValidationException::withMessages([
+				'email' => __('auth.failed'),
+			]);
+		}
 
-        RateLimiter::clear($this->throttleKey());
-        Session::regenerate();
+		RateLimiter::clear($this->throttleKey());
+		Session::regenerate();
 
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
-    }
+		$this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+	}
 
-    /**
-     * Ensure the authentication request is not rate limited.
-     */
-    protected function ensureIsNotRateLimited(): void
-    {
-        if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
-            return;
-        }
+	/**
+	 * Ensure the authentication request is not rate limited.
+	 */
+	protected function ensureIsNotRateLimited(): void {
+		if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
+			return;
+		}
 
-        event(new Lockout(request()));
+		event(new Lockout(request()));
 
-        $seconds = RateLimiter::availableIn($this->throttleKey());
+		$seconds = RateLimiter::availableIn($this->throttleKey());
 
-        throw ValidationException::withMessages([
-            'email' => __('auth.throttle', [
-                'seconds' => $seconds,
-                'minutes' => ceil($seconds / 60),
-            ]),
-        ]);
-    }
+		throw ValidationException::withMessages([
+			'email' => __('auth.throttle', [
+				'seconds' => $seconds,
+				'minutes' => ceil($seconds / 60),
+			]),
+		]);
+	}
 
-    /**
-     * Get the authentication rate limiting throttle key.
-     */
-    protected function throttleKey(): string
-    {
-        return Str::transliterate(Str::lower($this->email).'|'.request()->ip());
-    }
+	/**
+	 * Get the authentication rate limiting throttle key.
+	 */
+	protected function throttleKey(): string {
+		return Str::transliterate(Str::lower($this->email).'|'.request()->ip());
+	}
 }
