@@ -33,11 +33,8 @@ class Table extends Component
 	public $sortDirection = 'asc';
 
 	public function render() {
-		$years = Bottle::groupBy('vintage')->orderByDesc('vintage')->pluck('vintage');
-
 		return view('livewire.bottle.table', [
 			'rows' => $this->query()->paginate($this->perPage),
-			'years' => $years,
 		]);
 	}
 

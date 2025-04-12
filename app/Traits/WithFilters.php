@@ -14,13 +14,13 @@ trait WithFilters
 		}
 	}
 
-	#[On('clear-filters')]
-	public function clearFilters() {
+	#[On('reset-filters')]
+	public function resetFilters() {
 		$this->filters->reset();
 	}
 
 	#[On('reset-filter')]
-	public function resetFilter(string $name) {
-		$this->filters->reset($name);
+	public function resetFilter(string $key) {
+		$this->filters->reset($key);
 	}
 }

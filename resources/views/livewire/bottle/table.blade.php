@@ -1,7 +1,7 @@
 <div>
 	<div class="mt-12">
 		<x-pv.table.header placeholder="Search bottle name...">
-			<x-bottle.filters :$years />
+			<livewire:bottle.filters wire:model.live="filters" lazy />
 		</x-pv.table.header>
 	</div>
 
