@@ -14,14 +14,14 @@ class Rating extends Model
 		'user_id',
 		'bottle_id',
 		'purchase_id',
-		'rating',
+		'score',
 		'date',
 		'decant_duration',
 		'notes',
 	];
 
 	protected $casts = [
-		'rating' => 'integer',
+		'score' => 'integer',
 		'decant_duration' => 'integer',
 		'date' => 'datetime',
 	];
