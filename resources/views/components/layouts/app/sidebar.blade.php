@@ -16,23 +16,28 @@
 		<flux:navlist variant="outline">
 			<flux:navlist.group :heading="__('Platform')" class="grid">
 				<flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-				<flux:navlist.item
-					icon="list-bullet"
-					:href="route('bottle.index')"
-					:current="request()->routeIs('bottle.*')"
-					wire:navigate
-				>
-					Wine List
-				</flux:navlist.item>
+				@can('view-any', \App\Models\Bottle::class)
+					<flux:navlist.item
+						icon="list-bullet"
+						:href="route('bottle.index')"
+						:current="request()->routeIs('bottle.*')"
+						wire:navigate
+					>
+						Wine List
+					</flux:navlist.item>
+				@endcan
 
-				<flux:navlist.item
-					icon="banknotes"
-					:href="route('purchase.index')"
-					:current="request()->routeIs('purchase.*')"
-					wire:navigate
-				>
-					Purchases
-				</flux:navlist.item>
+				@can('view-any', \App\Models\Purchase::class)
+					<flux:navlist.item
+						icon="banknotes"
+						:href="route('purchase.index')"
+						:current="request()->routeIs('purchase.*')"
+						wire:navigate
+					>
+						Purchases
+					</flux:navlist.item>
+				@endcan
+				@endcan
 			</flux:navlist.group>
 		</flux:navlist>
 
