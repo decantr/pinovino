@@ -37,6 +37,16 @@
 						Purchases
 					</flux:navlist.item>
 				@endcan
+
+				@can('view-any', \App\Models\Rating::class)
+					<flux:navlist.item
+						icon="star"
+						:href="route('rating.index')"
+						:current="request()->routeIs('rating.*')"
+						wire:navigate
+					>
+						Ratings
+					</flux:navlist.item>
 				@endcan
 			</flux:navlist.group>
 		</flux:navlist>

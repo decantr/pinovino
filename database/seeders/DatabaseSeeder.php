@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Bottle;
-use App\Models\Purchase;
+use App\Models\Rating;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -22,7 +21,6 @@ class DatabaseSeeder extends Seeder
 			'password' => 'password',
 		]);
 
-		Bottle::factory(100)->create();
-		Purchase::factory(100)->create();
+		Rating::factory(100)->create();
 	}
 }

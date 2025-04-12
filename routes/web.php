@@ -18,6 +18,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		->can('view-any', \App\Models\Purchase::class)
 		->name('purchase.index');
 
+	Route::get('rating', \App\Livewire\Rating\Page::class)
+		->can('view-any', \App\Models\Rating::class)
+		->name('rating.index');
+
 	// from starter kit
 	Route::redirect('settings', 'settings/profile');
 
