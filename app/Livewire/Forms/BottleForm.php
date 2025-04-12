@@ -30,6 +30,12 @@ class BottleForm extends Form
 	#[Validate('nullable|string')]
 	public $description;
 
+	#[Validate([
+		'files' => ['array'],
+		'files.*' => ['image', 'mimes:jpeg,jpg,png,gif,webp'],
+	])]
+	public $files;
+
 	public function set(Bottle $bottle): void {
 		$this->bottle = $bottle;
 		$this->fill($bottle->toArray());
@@ -40,8 +46,15 @@ class BottleForm extends Form
 
 		if ($this->bottle) {
 			$this->bottle->update($this->toArray());
+			$bottle = $this->bottle;
 		} else {
-			Bottle::create($this->toArray());
+			$bottle = Bottle::create($this->toArray());
+		}
+
+		if (!empty($this->files)) {
+			foreach ($this->files as $file) {
+				$bottle->addMedia($file)->toMediaCollection('photographs');
+			}
 		}
 	}
 }

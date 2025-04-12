@@ -6,9 +6,7 @@
 
 	<flux:table :paginate="$rows" class="mt-6">
 		<flux:table.columns>
-			<flux:table.column class="pr-0! w-0">
-
-			</flux:table.column>
+			<flux:table.column class="pr-0! w-0" />
 
 			<flux:table.column
 				sortable

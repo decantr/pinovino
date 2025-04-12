@@ -7,6 +7,8 @@
 
 	<flux:table :paginate="$rows" class="mt-6">
 		<flux:table.columns>
+			<flux:table.column class="pr-0! w-0" />
+
 			<flux:table.column
 				sortable
 				:sorted="$sortBy === 'name'"
@@ -35,6 +37,10 @@
 		<flux:table.rows>
 			@forelse($rows as $row)
 				<flux:table.row :key="$row->id">
+					<flux:table.cell class="pr-0! w-10">
+						<x-bottle.avatar :bottle="$row" />
+					</flux:table.cell>
+
 					<flux:table.cell>
 						<flux:heading>
 							<x-bottle.wine-type

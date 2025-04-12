@@ -47,8 +47,25 @@
 			</div>
 		</flux:fieldset>
 
+		<flux:fieldset class="mt-6">
+			<flux:input
+				description="Add photographs of this bottle to help identify it"
+				type="file"
+				label="Photographs"
+				wire:model="form.files"
+				multiple
+			/>
+
+			<div class="flex gap-3 flex-wrap">
+				@foreach($form->bottle?->media ?? [] as $media)
+					<x-bottle.photo :$media :wire:key="$media->id" size="lg"/>
+				@endforeach
+			</div>
+		</flux:fieldset>
+
 		<div class="mt-6">
 			<flux:editor
+				class="[&>ui-editor-content>div]:min-h-20!"
 				label="Description"
 				wire:model="form.description"
 			/>

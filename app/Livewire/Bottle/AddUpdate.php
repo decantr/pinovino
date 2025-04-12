@@ -7,9 +7,11 @@ use App\Models\Bottle;
 use Flux\Flux;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
-class AddUpdate extends Component
-{
+class AddUpdate extends Component {
+	use WithFileUploads;
+
 	public BottleForm $form;
 
 	public function render() {
@@ -24,6 +26,7 @@ class AddUpdate extends Component
 
 	#[On('edit-bottle')]
 	public function edit(Bottle $bottle) {
+		$bottle->load('media');
 		$this->form->set($bottle);
 		Flux::modal('modal-bottle-form')->show();
 	}

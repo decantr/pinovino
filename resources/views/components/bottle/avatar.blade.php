@@ -1,6 +1,7 @@
 @props([
 	'bottle',
 ])
+<?php /** @var \App\Models\Bottle $bottle */ ?>
 <div>
-	<flux:avatar />
+	<x-bottle.photo :media="$bottle->avatar" />
 </div>
