@@ -11,6 +11,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 
 #[On('refresh-bottle-table')]
+#[On('refresh-purchase-table')]
 class Table extends Component
 {
 	use WithFilters;
