@@ -103,7 +103,7 @@
 				required
 				wire:model="form.score"
 			>
-				<div class="grid grid-cols-10 w-full">
+				<div class="grid max-sm:grid-cols-5 sm:grid-cols-10 gap-y-3 w-full">
 					@foreach(range(1,10) as $i)
 						<flux:radio :label="$i" :value="$i" />
 					@endforeach
@@ -111,12 +111,12 @@
 			</flux:radio.group>
 		</flux:fieldset>
 
-		<flux:fieldset class="mt-6">
+		<div class="mt-6 ">
 			<flux:editor
-				class="[&>ui-editor-content>div]:min-h-20!"
+				class="[&>ui-editor-content>div]:min-h-20! max-sm:max-w-[85svw]"
 				label="Notes"
 				wire:model="form.notes"
 			/>
-		</flux:fieldset>
+		</div>
 	</form>
 </div>

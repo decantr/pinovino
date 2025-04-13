@@ -90,7 +90,7 @@
 			</div>
 
 			<flux:editor
-				class="[&>ui-editor-content>div]:min-h-20!"
+				class="[&>ui-editor-content>div]:min-h-20! max-sm:max-w-[85svw]"
 				label="Notes"
 				wire:model="form.notes"
 			/>
