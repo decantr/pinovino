@@ -22,11 +22,11 @@
 				Type
 			</flux:table.column>
 
-			<flux:table.column>
+			<flux:table.column class="max-md:hidden">
 				Rating
 			</flux:table.column>
 
-			<flux:table.column>
+			<flux:table.column class="max-md:hidden">
 				Grapes
 			</flux:table.column>
 
@@ -54,7 +54,7 @@
 						/>
 					</flux:table.cell>
 
-					<flux:table.cell>
+					<flux:table.cell class="max-md:hidden">
 						@empty($row->rating)
 							Not Rated
 						@else
@@ -62,7 +62,7 @@
 						@endempty
 					</flux:table.cell>
 
-					<flux:table.cell>
+					<flux:table.cell class="max-md:hidden">
 						@foreach ($row->grapes as $grape)
 							{{ $grape->name }}
 						@endforeach
