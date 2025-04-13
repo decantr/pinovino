@@ -13,7 +13,7 @@ class PurchasePolicy
 	}
 
 	public function view(User $user, Purchase $purchase): bool {
-		if ($user->role === UserRole::Admin) {
+		if ($user->role?->gt(UserRole::Admin)) {
 			return true;
 		}
 
@@ -21,11 +21,11 @@ class PurchasePolicy
 	}
 
 	public function create(User $user): bool {
-		return $user->role === UserRole::User;
+		return $user->role?->gt(UserRole::User);
 	}
 
 	public function update(User $user, Purchase $purchase): bool {
-		if ($user->role === UserRole::Admin) {
+		if ($user->role?->gt(UserRole::Admin)) {
 			return true;
 		}
 
@@ -33,7 +33,7 @@ class PurchasePolicy
 	}
 
 	public function delete(User $user, Purchase $purchase): bool {
-		if ($user->role === UserRole::Admin) {
+		if ($user->role?->gt(UserRole::Admin)) {
 			return true;
 		}
 
@@ -41,7 +41,7 @@ class PurchasePolicy
 	}
 
 	public function restore(User $user, Purchase $purchase): bool {
-		if ($user->role === UserRole::Admin) {
+		if ($user->role?->gt(UserRole::Admin)) {
 			return true;
 		}
 

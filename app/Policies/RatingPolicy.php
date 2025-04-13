@@ -13,7 +13,7 @@ class RatingPolicy
 	}
 
 	public function view(User $user, Rating $rating): bool {
-		if ($user->role === UserRole::Admin) {
+		if ($user->role?->gt(UserRole::Admin)) {
 			return true;
 		}
 
@@ -21,11 +21,11 @@ class RatingPolicy
 	}
 
 	public function create(User $user): bool {
-		return true;
+		return $user->role?->gt(UserRole::User);
 	}
 
 	public function update(User $user, Rating $rating): bool {
-		if ($user->role === UserRole::Admin) {
+		if ($user->role?->gt(UserRole::Admin)) {
 			return true;
 		}
 
@@ -33,7 +33,7 @@ class RatingPolicy
 	}
 
 	public function delete(User $user, Rating $rating): bool {
-		if ($user->role === UserRole::Admin) {
+		if ($user->role?->gt(UserRole::Admin)) {
 			return true;
 		}
 
@@ -41,7 +41,7 @@ class RatingPolicy
 	}
 
 	public function restore(User $user, Rating $rating): bool {
-		if ($user->role === UserRole::Admin) {
+		if ($user->role?->gt(UserRole::Admin)) {
 			return true;
 		}
 
