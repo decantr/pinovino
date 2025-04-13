@@ -83,7 +83,7 @@
 					wire:model="form.date"
 				/>
 
-				@if($this->bottle->wine_type === \App\Enums\WineType::Red)
+				@if(empty($form->bottle_id) || $this->bottle?->wine_type === \App\Enums\WineType::Red)
 					<flux:input
 						min="0"
 						label="Decant Duration"

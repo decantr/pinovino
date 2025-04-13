@@ -72,9 +72,8 @@ class AddUpdate extends Component
 	}
 
 	#[Computed]
-	public function bottle(): Bottle {
-		return Bottle::query()
-			->find($this->form->bottle_id);;
+	public function bottle(): ?Bottle {
+		return Bottle::find($this->form->bottle_id);
 	}
 
 	#[Computed]
