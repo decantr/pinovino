@@ -21,7 +21,7 @@ class BottlePolicy
 	}
 
 	public function update(User $user, Bottle $bottle): bool {
-		return $user->role === UserRole::Admin;
+		return $user->role === UserRole::User;
 	}
 
 	public function delete(User $user, Bottle $bottle): bool {
