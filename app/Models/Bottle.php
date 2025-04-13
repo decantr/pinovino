@@ -28,6 +28,7 @@ class Bottle extends Model implements HasMedia {
 		'region',
 		'description',
 		'producer',
+		'size',
 	];
 
 	protected $casts = [
