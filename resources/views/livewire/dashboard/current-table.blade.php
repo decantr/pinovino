@@ -18,23 +18,18 @@
 				Bottle
 			</flux:table.column>
 
-			<flux:table.column>
+			<flux:table.column class="w-12">
+				Type
+			</flux:table.column>
 
+			<flux:table.column>
+				Rating
 			</flux:table.column>
 
 			<flux:table.column>
 				Grapes
 			</flux:table.column>
 
-			<flux:table.column
-				class="w-12"
-				sortable
-				:sorted="$sortBy === 'vintage'"
-				:direction="$sortDirection"
-				wire:click="sort('vintage')"
-			>
-				Vintage
-			</flux:table.column>
 			<flux:table.column class="w-12"></flux:table.column>
 		</flux:table.columns>
 
@@ -42,20 +37,21 @@
 			@forelse($rows as $row)
 				<flux:table.row :key="$row->id">
 					<flux:table.cell class="pr-0! w-10">
-						<x-bottle.avatar :bottle="$row" size="xl" />
+						<x-bottle.avatar :bottle="$row" size="lg" />
 					</flux:table.cell>
 
 					<flux:table.cell>
-						<flux:heading>
-							<x-bottle.wine-type
-								:wine_type="$row->wine_type"
-								size="sm"
-								inset="top bottom"
-								class="mr-2 min-w-12 justify-center"
-							/>
-							{{ $row->name }}
-						</flux:heading>
+						<x-bottle.name :bottle="$row"/>
 						<flux:subheading>{{ $row->country }}</flux:subheading>
+					</flux:table.cell>
+
+					<flux:table.cell>
+						<x-bottle.wine-type
+							:wine_type="$row->wine_type"
+							size="sm"
+							inset="top bottom"
+							class="mr-2 min-w-12 justify-center"
+						/>
 					</flux:table.cell>
 
 					<flux:table.cell>
@@ -70,10 +66,6 @@
 						@foreach ($row->grapes as $grape)
 							{{ $grape->name }}
 						@endforeach
-					</flux:table.cell>
-
-					<flux:table.cell class="text-center tabular-nums">
-						{{ $row->vintage }}
 					</flux:table.cell>
 
 					<flux:table.cell>
