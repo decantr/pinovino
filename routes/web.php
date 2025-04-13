@@ -5,7 +5,7 @@ use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn () => view('welcome'))->name('home');
+Route::get('/', fn () => redirect(route('dashboard')))->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 	Route::view('dashboard', 'dashboard')->name('dashboard');
