@@ -11,7 +11,7 @@
 				@endforeach
 			</flux:radio.group>
 
-			<div class="grid grid-cols-[3fr_1fr] gap-6 mt-6 mb-3">
+			<div class="grid grid-cols-[3fr_1fr_1fr] gap-6 mt-6 mb-3 items-end">
 				<flux:input
 					badge="Required"
 					label="Name"
@@ -28,12 +28,18 @@
 					max="2050"
 					wire:model="form.vintage"
 				/>
-			</div>
 
-			<flux:input
-				label="Producer"
-				wire:model="form.producer"
-			/>
+				<flux:select
+					label="Size"
+					wire:model="form.size"
+				>
+					@foreach(\App\Enums\BottleSize::cases() as $case)
+						<flux:select.option :value="$case->value">
+							{{ $case->value }}cl
+						</flux:select.option>
+					@endforeach
+				</flux:select>
+			</div>
 		</flux:fieldset>
 
 		<flux:separator class="mx-auto max-w-sm my-6"/>
@@ -48,6 +54,11 @@
 				<flux:input
 					label="Region"
 					wire:model="form.region"
+				/>
+
+				<flux:input
+					label="Producer"
+					wire:model="form.producer"
 				/>
 			</div>
 		</flux:fieldset>

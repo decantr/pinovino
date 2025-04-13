@@ -55,7 +55,10 @@
 							/>
 							{{ $row->name }}
 						</flux:heading>
-						<flux:subheading>{{ $row->country }}</flux:subheading>
+						<flux:subheading>
+							{{ $row->country }}
+							<x-bottle.size :size="$row->size" />
+						</flux:subheading>
 					</flux:table.cell>
 
 					<flux:table.cell>

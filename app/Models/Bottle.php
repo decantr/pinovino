@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\BottleSize;
 use App\Enums\WineType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -31,6 +32,7 @@ class Bottle extends Model implements HasMedia {
 
 	protected $casts = [
 		'wine_type' => WineType::class,
+		'size' => BottleSize::class,
 	];
 
 	public function grapes(): BelongsToMany {
