@@ -1,5 +1,5 @@
 <div>
-	<div class="mt-12">
+	<div>
 		<x-pv.table.header placeholder="Search bottle name...">
 			<livewire:bottle.filters wire:model.live="filters" lazy />
 		</x-pv.table.header>
@@ -18,7 +18,7 @@
 				Bottle
 			</flux:table.column>
 
-			<flux:table.column class="w-12">
+			<flux:table.column class="w-12 max-sm:hidden">
 				Type
 			</flux:table.column>
 
@@ -42,10 +42,18 @@
 
 					<flux:table.cell>
 						<x-bottle.name :bottle="$row"/>
-						<flux:subheading>{{ $row->country }}</flux:subheading>
+						<div class="flex items-baseline gap-3">
+							<x-bottle.wine-type
+								:wine_type="$row->wine_type"
+								size="sm"
+								inset="top bottom"
+								class="h-5 sm:hidden"
+							/>
+							<flux:subheading>{{ $row->country }}</flux:subheading>
+						</div>
 					</flux:table.cell>
 
-					<flux:table.cell>
+					<flux:table.cell class="max-sm:hidden">
 						<x-bottle.wine-type
 							:wine_type="$row->wine_type"
 							size="sm"

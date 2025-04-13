@@ -1,5 +1,5 @@
 <div>
-	<div class="flex">
+	<div class="flex gap-y-3 mb-5">
 		<div>
 			<flux:heading>Wine Cellar</flux:heading>
 			<flux:subheading>Wines currently in your collection</flux:subheading>
@@ -7,8 +7,12 @@
 
 		<flux:spacer />
 
-		<div class="flex gap-6">
-			<flux:button icon="plus" wire:click="$dispatch('create-purchase')">
+		<div class="flex gap-3 justify-end">
+			<flux:button
+				icon="plus"
+				wire:click="$dispatch('create-purchase')"
+				class="max-md:hidden"
+			>
 				New Purchase
 			</flux:button>
 
