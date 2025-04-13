@@ -3,5 +3,5 @@
 ])
 <?php /** @var \App\Models\Bottle $bottle */ ?>
 <div>
-	<x-bottle.photo :media="$bottle->avatar" />
+	<x-bottle.photo :media="$bottle->avatar" :$attributes />
 </div>

@@ -11,8 +11,9 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class AddUpdate extends Component
-{
+class AddUpdate extends Component {
+	public ?Bottle $bottle = null;
+
 	public PurchaseForm $form;
 
 	public function render() {
@@ -20,8 +21,10 @@ class AddUpdate extends Component
 	}
 
 	#[On('create-purchase')]
-	public function create() {
+	public function create($bottle = null) {
 		$this->form->reset();
+		$this->form->bottle_id = $bottle ?? $this->bottle ?? null;
+
 		Flux::modal('modal-purchase-form')->show();
 	}
 

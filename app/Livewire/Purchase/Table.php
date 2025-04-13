@@ -22,12 +22,11 @@ class Table extends Component
 
 	// filters
 	public $search;
-
 	public PurchaseFilter $filters;
+	public $bottle_id = null;
 
 	// sorting
 	public $sortBy = 'date';
-
 	public $sortDirection = 'desc';
 
 	public function render() {
@@ -42,6 +41,10 @@ class Table extends Component
 				'user',
 				'bottle',
 			])
+			->when(
+				$this->bottle_id,
+				fn (Builder $query) => $query->where('bottle_id', $this->bottle_id),
+			)
 			->when(
 				$this->search,
 				fn (Builder $q, $i) => $q->whereHas(

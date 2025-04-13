@@ -19,6 +19,7 @@
 				</flux:select>
 			@endif
 
+			@empty($bottle)
 			<div class="grid grid-cols-[1fr_8rem] gap-6 items-center mb-6">
 				<flux:select
 					label="Bottle"
@@ -43,6 +44,7 @@
 					Add New
 				</flux:button>
 			</div>
+			@endempty
 
 			<flux:date-picker
 				label="Date"
