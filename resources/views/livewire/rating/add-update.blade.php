@@ -25,7 +25,7 @@
 					badge="Required"
 					variant="listbox"
 					searchable
-					wire:model="form.bottle_id"
+					wire:model.live="form.bottle_id"
 					class="[&>button>ui-selected>div]:w-full!"
 				>
 					@foreach($this->bottles as $bottle)
@@ -42,6 +42,35 @@
 				<flux:button wire:click="$dispatch('create-bottle')" class="mt-6">
 					Add New
 				</flux:button>
+			</div>
+
+			<div>
+				<flux:select
+					label="Purchase"
+					badge="Required"
+					variant="listbox"
+					class="[&>button>ui-selected>div]:w-full!"
+					wire:model="form.purchase_id"
+				>
+					@forelse($this->purchases() as $p)
+						<flux:select.option :value="$p->id">
+							<div class="flex gap-3 w-full">
+								<flux:subheading class="tabular-nums">
+									{{ $p->store }}
+								</flux:subheading>
+								<flux:heading class="my-0! ml-3 mr-auto">
+									{{ \Illuminate\Support\Number::currency($p->cost) }}
+								</flux:heading>
+								<flux:subheading class="tabular-nums">
+									<x-date :date="$p->date" />
+								</flux:subheading>
+							</div>
+						</flux:select.option>
+					@empty
+						<flux:select.option disabled>You haven't bought this bottle</flux:select.option>
+					@endforelse
+				</flux:select>
+
 			</div>
 
 			<div class="grid grid-cols-[1fr_8rem] gap-6 items-end mb-6">

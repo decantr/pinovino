@@ -42,6 +42,14 @@ class Table extends Component
 				'user',
 				'bottle',
 			])
+			->when(
+				$this->search,
+				fn (Builder $q, $i) => $q->whereHas(
+					'bottle',
+					static fn (Builder $q) => $q->search('bottles.name', $i)
+				)
+
+			)
 			->orderBy($this->sortBy, $this->sortDirection);
 
 		return $this->filters->applyRange($query);

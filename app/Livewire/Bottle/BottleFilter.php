@@ -33,4 +33,11 @@ class BottleFilter extends Form
 			fn (Builder $q) => $q->where('user_id', \auth()->id())
 		);
 	}
+
+	public function applyNoRating(Builder $query): Builder {
+		return $query->whereDoesntHave(
+			'rating',
+			fn (Builder $q) => $q->where('user_id', \auth()->id())
+		);
+	}
 }

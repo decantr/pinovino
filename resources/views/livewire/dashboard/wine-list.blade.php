@@ -28,7 +28,7 @@
 		</div>
 	</div>
 
-	<livewire:bottle.table perPage="5" :apply="['applyOwner']" />
+	<livewire:dashboard.current-table perPage="5" />
 
 	<flux:modal name="modal-bottle-form" class="max-w-2xl! w-full">
 		<livewire:bottle.add-update lazy />
@@ -40,5 +40,11 @@
 		<livewire:purchase.add-update lazy />
 
 		<x-pv.modal.footer form="purchase-form" class="mt-12"/>
+	</flux:modal>
+
+	<flux:modal name="modal-rating-form" class="max-w-2xl! w-full">
+		<livewire:rating.add-update lazy />
+
+		<x-pv.modal.footer form="rating-form" class="mt-12"/>
 	</flux:modal>
 </div>

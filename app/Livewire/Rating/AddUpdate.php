@@ -4,9 +4,11 @@ namespace App\Livewire\Rating;
 
 use App\Livewire\Forms\RatingForm;
 use App\Models\Bottle;
+use App\Models\Purchase;
 use App\Models\Rating;
 use App\Models\User;
 use Flux\Flux;
+use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -20,9 +22,15 @@ class AddUpdate extends Component
 	}
 
 	#[On('create-rating')]
-	public function create() {
+	public function create($bottle = null, $purchase = null) {
 		$this->form->reset();
 		$this->form->user_id = \auth()->id();
+
+		$this->form->fill([
+			'bottle_id' => $bottle,
+			'purchase_id' => $purchase,
+		]);
+
 		Flux::modal('modal-rating-form')->show();
 	}
 
@@ -61,5 +69,18 @@ class AddUpdate extends Component
 		return Bottle::query()
 			->orderBy('name')
 			->get(['id', 'name', 'vintage', 'wine_type']);
+	}
+
+	#[Computed]
+	#[On('refresh-purchase-list')]
+	public function purchases() {
+		return Purchase::query()
+			->where('user_id', \auth()->id())
+			->when(
+				$this->form->bottle_id,
+				fn (Builder $q) => $q->where('bottle_id', $this->form->bottle_id)
+			)
+			->orderByDesc('date')
+			->get();
 	}
 }
