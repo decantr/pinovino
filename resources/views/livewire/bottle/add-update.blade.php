@@ -11,7 +11,7 @@
 				@endforeach
 			</flux:radio.group>
 
-			<div class="grid grid-cols-[3fr_1fr] gap-6 mt-6">
+			<div class="grid grid-cols-[3fr_1fr] gap-6 mt-6 mb-3">
 				<flux:input
 					badge="Required"
 					label="Name"
@@ -29,6 +29,11 @@
 					wire:model="form.vintage"
 				/>
 			</div>
+
+			<flux:input
+				label="Producer"
+				wire:model="form.producer"
+			/>
 		</flux:fieldset>
 
 		<flux:separator class="mx-auto max-w-sm my-6"/>

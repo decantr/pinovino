@@ -30,8 +30,11 @@ class BottleForm extends Form
 	#[Validate('nullable|string')]
 	public $description;
 
+	#[Validate('nullable|string')]
+	public $producer;
+
 	#[Validate([
-		'files' => ['array'],
+		'files' => ['nullable', 'array'],
 		'files.*' => ['image', 'mimes:jpeg,jpg,png,gif,webp'],
 	])]
 	public $files;
