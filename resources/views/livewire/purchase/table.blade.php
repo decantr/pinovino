@@ -3,7 +3,7 @@
 		<div class="max-w-xs w-full">
 			<flux:date-picker
 				mode="range"
-				:min="\App\Models\Purchase::oldest('date')->first('date')->date->format('Y-m-d')"
+				:min="(\App\Models\Purchase::oldest('date')->first('date')?->date ?? \today())->format('Y-m-d')"
 				with-presets
 				selectable-header
 				wire:model.live="filters.range"
