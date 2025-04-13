@@ -1,7 +1,9 @@
 <div>
 	<form wire:submit="save" id="bottle-form">
-		<div class="mb-12">
-			<flux:heading>{{ $this->form->bottle ? 'Edit Bottle' : 'Create Bottle' }}</flux:heading>
+		<div class="mb-6">
+			<flux:heading size="lg">
+				{{ $this->form->bottle ? 'Edit Bottle' : 'Create Bottle' }}
+			</flux:heading>
 		</div>
 
 		<flux:fieldset>
@@ -11,34 +13,40 @@
 				@endforeach
 			</flux:radio.group>
 
-			<div class="grid grid-cols-[3fr_1fr_1fr] gap-6 mt-6 mb-3 items-end">
-				<flux:input
-					badge="Required"
-					label="Name"
-					required
-					wire:model="form.name"
-				/>
+			<div class="flex max-md:flex-wrap gap-6 mt-6 mb-3 items-end">
+				<div class="max-md:w-full min-w-64 flex-grow-1">
+					<flux:input
+						badge="Required"
+						label="Name"
+						required
+						wire:model="form.name"
+					/>
+				</div>
 
-				<flux:input
-					badge="Required"
-					label="Vintage"
-					required
-					type="number"
-					min="1900"
-					max="2050"
-					wire:model="form.vintage"
-				/>
+				<div class="flex-1 min-w-28">
+					<flux:input
+						badge="Required"
+						label="Vintage"
+						required
+						type="number"
+						min="1900"
+						max="2050"
+						wire:model="form.vintage"
+					/>
+				</div>
 
-				<flux:select
-					label="Size"
-					wire:model="form.size"
-				>
-					@foreach(\App\Enums\BottleSize::cases() as $case)
-						<flux:select.option :value="$case->value">
-							{{ $case->value }}cl
-						</flux:select.option>
-					@endforeach
-				</flux:select>
+				<div class="flex-1 min-w-28">
+					<flux:select
+						label="Size"
+						wire:model="form.size"
+					>
+						@foreach(\App\Enums\BottleSize::cases() as $case)
+							<flux:select.option :value="$case->value">
+								{{ $case->value }}cl
+							</flux:select.option>
+						@endforeach
+					</flux:select>
+				</div>
 			</div>
 		</flux:fieldset>
 
