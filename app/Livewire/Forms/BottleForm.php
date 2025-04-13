@@ -49,13 +49,13 @@ class BottleForm extends Form
 	}
 
 	public function save(): void {
-		$this->validate();
+		$validated = $this->validate();
 
 		if ($this->bottle) {
-			$this->bottle->update($this->toArray());
+			$this->bottle->update($validated);
 			$bottle = $this->bottle;
 		} else {
-			$bottle = Bottle::create($this->toArray());
+			$bottle = Bottle::create($validated);
 		}
 
 		if (!empty($this->files)) {

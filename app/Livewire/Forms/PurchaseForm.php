@@ -34,14 +34,14 @@ class PurchaseForm extends Form
 	}
 
 	public function save(): void {
-		$this->validate();
+		$validated = $this->validate();
 
 		if ($this->purchase) {
-			$this->purchase->update($this->toArray());
+			$this->purchase->update($validated);
 		} else {
 			$this->user_id ??= \auth()->id();
 
-			Purchase::create($this->toArray());
+			Purchase::create($validated);
 		}
 	}
 }
