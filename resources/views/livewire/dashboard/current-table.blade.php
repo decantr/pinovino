@@ -42,7 +42,7 @@
 			@forelse($rows as $row)
 				<flux:table.row :key="$row->id">
 					<flux:table.cell class="pr-0! w-10">
-						<x-bottle.avatar :bottle="$row" />
+						<x-bottle.avatar :bottle="$row" size="xl" />
 					</flux:table.cell>
 
 					<flux:table.cell>
