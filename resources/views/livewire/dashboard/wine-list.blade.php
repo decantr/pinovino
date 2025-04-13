@@ -7,19 +7,31 @@
 
 		<flux:spacer />
 
-		<div>
-			<flux:dropdown align="end" position="bottom">
-				<flux:button icon="plus">
-					New Purchase
-				</flux:button>
+		<div class="flex gap-6">
+			<flux:button icon="plus" wire:click="$dispatch('create-purchase')">
+				New Purchase
+			</flux:button>
 
+			<flux:dropdown align="end" position="bottom">
+				<flux:button icon="ellipsis-horizontal" />
 				<flux:menu>
-					<flux:menu.item icon="" wire:click="$dispatch('create-purchase')">
-						Existing Bottle
+					@can('create', \App\Models\Rating::class)
+					<flux:menu.item icon="star" wire:click="$dispatch('create-rating')">
+						New Rating
 					</flux:menu.item>
+					@endcan
+
+					@can('create', \App\Models\Purchase::class)
+						<flux:menu.separator/>
+
+						<flux:menu.item icon="banknotes" wire:click="$dispatch('create-purchase')">
+							New Purchase
+						</flux:menu.item>
+					@endcan
 
 					@can('create', \App\Models\Bottle::class)
-						<flux:menu.item icon="" wire:click="$dispatch('create-bottle')">
+						<flux:menu.separator/>
+						<flux:menu.item icon="plus" wire:click="$dispatch('create-bottle')">
 							New Bottle
 						</flux:menu.item>
 					@endcan
