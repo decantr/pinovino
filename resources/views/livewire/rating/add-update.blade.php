@@ -73,7 +73,7 @@
 
 			</div>
 
-			<div class="grid grid-cols-[1fr_8rem] gap-6 items-end mb-6">
+			<div class="grid grid-cols-[1fr_8rem] gap-6 items-end">
 				<flux:date-picker
 					label="Date"
 					max="today"
@@ -83,20 +83,24 @@
 					wire:model="form.date"
 				/>
 
-				<flux:input
-					min="0"
-					label="Decant Duration"
-					clearable
-					type="number"
-					wire:model="form.decant_duration"
-				/>
+				@if($this->bottle->wine_type === \App\Enums\WineType::Red)
+					<flux:input
+						min="0"
+						label="Decant Duration"
+						clearable
+						type="number"
+						wire:model="form.decant_duration"
+					/>
+				@endif
 			</div>
 		</flux:fieldset>
 
 		<flux:fieldset class="my-6">
 			<flux:radio.group
+				badge="Required"
 				description="1 = Hated, 10 = Loved"
 				label="Score"
+				required
 				wire:model="form.score"
 			>
 				<div class="grid grid-cols-10 w-full">

@@ -25,6 +25,7 @@ class AddUpdate extends Component
 	public function create($bottle = null) {
 		$this->form->reset();
 		$this->form->bottle_id = $bottle ?? $this->bottle ?? null;
+		$this->form->user_id = auth()->id();
 
 		Flux::modal('modal-purchase-form')->show();
 	}
@@ -47,6 +48,7 @@ class AddUpdate extends Component
 		$this->form->reset();
 		Flux::modal('modal-purchase-form')->close();
 		$this->dispatch('refresh-purchase-table');
+		$this->dispatch('purchase-created');
 	}
 
 	#[Computed]

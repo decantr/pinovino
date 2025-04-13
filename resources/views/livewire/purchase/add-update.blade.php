@@ -1,7 +1,7 @@
 <div>
 	<form wire:submit="save" id="purchase-form">
-		<div class="mb-12">
-			<flux:heading>{{ $this->form->purchase ? 'Edit Purchase' : 'Create Purchase' }}</flux:heading>
+		<div class="mb-6">
+			<flux:heading size="lg">{{ $this->form->purchase ? 'Edit Purchase' : 'Create Purchase' }}</flux:heading>
 		</div>
 
 		<flux:fieldset>
@@ -20,7 +20,7 @@
 			@endif
 
 			@empty($bottle)
-			<div class="grid grid-cols-[1fr_8rem] gap-6 items-center mb-6">
+			<div class="grid grid-cols-[1fr_8rem] gap-6 items-end mb-6">
 				<flux:select
 					label="Bottle"
 					badge="Required"
@@ -46,16 +46,21 @@
 			</div>
 			@endempty
 
-			<flux:date-picker
-				label="Date"
-				max="today"
-				selectable-header
-				with-today
-				badge="Required"
-				wire:model="form.date"
-			/>
+			<flux:separator class="mx-auto max-w-sm my-6"/>
 
-			<div class="grid grid-cols-[1fr_3fr] gap-6 w-full my-6">
+			<div>
+				<flux:date-picker
+					label="Date"
+					max="today"
+					selectable-header
+					with-today
+					badge="Required"
+					wire:model="form.date"
+				/>
+			</div>
+
+
+			<div class="grid grid-cols-[1fr_3fr] gap-6 w-full my-6 items-end">
 				<flux:input.group label="Cost" badge="Required">
 					<flux:input.group.prefix>£</flux:input.group.prefix>
 
@@ -69,6 +74,7 @@
 			</div>
 
 			<flux:editor
+				class="[&>ui-editor-content>div]:min-h-20!"
 				label="Notes"
 				wire:model="form.notes"
 			/>

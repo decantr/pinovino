@@ -54,6 +54,7 @@ class AddUpdate extends Component
 		Flux::modal('modal-rating-form')->close();
 		$this->dispatch('refresh-rating-table');
 		$this->dispatch('refresh-rating-list');
+		$this->dispatch('rating-created');
 	}
 
 	#[Computed]
@@ -64,11 +65,16 @@ class AddUpdate extends Component
 	}
 
 	#[Computed]
-	#[On('refresh-bottle-list')]
 	public function bottles() {
 		return Bottle::query()
 			->orderBy('name')
 			->get(['id', 'name', 'vintage', 'wine_type']);
+	}
+
+	#[Computed]
+	public function bottle(): Bottle {
+		return Bottle::query()
+			->find($this->form->bottle_id);;
 	}
 
 	#[Computed]
