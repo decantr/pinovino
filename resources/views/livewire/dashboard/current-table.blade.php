@@ -82,7 +82,7 @@
 								@can('view', $row)
 									<flux:menu.item
 										icon="arrow-top-right-on-square"
-										wire:click="open({{ $row->id }})"
+										:href="route('bottle.show', $row->id)"
 									>
 										View
 									</flux:menu.item>
