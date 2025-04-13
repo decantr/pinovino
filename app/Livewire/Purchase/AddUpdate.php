@@ -11,7 +11,8 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class AddUpdate extends Component {
+class AddUpdate extends Component
+{
 	public ?Bottle $bottle = null;
 
 	public PurchaseForm $form;

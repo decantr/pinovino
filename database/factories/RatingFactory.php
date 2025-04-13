@@ -32,7 +32,7 @@ class RatingFactory extends Factory
 
 	public function setPurchase(Purchase $purchase): self {
 		return $this->state(
-			static fn(array $attributes) => [
+			static fn (array $attributes) => [
 				'purchase_id' => $purchase,
 			]
 		);
@@ -40,7 +40,7 @@ class RatingFactory extends Factory
 
 	public function setBottle(Bottle $bottle): self {
 		return $this->state(
-			static fn(array $attributes) => [
+			static fn (array $attributes) => [
 				'bottle_id' => $bottle,
 			]
 		);
@@ -48,7 +48,7 @@ class RatingFactory extends Factory
 
 	public function setUser(User $user): self {
 		return $this->state(
-			static fn(array $attributes) => [
+			static fn (array $attributes) => [
 				'user_id' => $user,
 			]
 		);

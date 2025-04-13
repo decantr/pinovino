@@ -6,7 +6,8 @@ use App\Models\Rating;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
-class RatingForm extends Form {
+class RatingForm extends Form
+{
 	public ?Rating $rating = null;
 
 	#[Validate(['required', 'exists:users,id'])]

@@ -2,9 +2,7 @@
 
 namespace App\Livewire\Rating;
 
-use App\Livewire\Bottle\BottleFilter;
 use App\Livewire\Forms\RatingFilter;
-use App\Models\Bottle;
 use App\Models\Rating;
 use App\Traits\WithFilters;
 use App\Traits\WithSorting;

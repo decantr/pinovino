@@ -58,7 +58,7 @@ class BottleForm extends Form
 			$bottle = Bottle::create($validated);
 		}
 
-		if (!empty($this->files)) {
+		if (! empty($this->files)) {
 			foreach ($this->files as $file) {
 				$bottle->addMedia($file)->toMediaCollection('photographs');
 			}

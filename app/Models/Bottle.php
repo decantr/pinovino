@@ -15,9 +15,11 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Bottle extends Model implements HasMedia {
+class Bottle extends Model implements HasMedia
+{
 	/** @use HasFactory<\Database\Factories\BottleFactory> */
 	use HasFactory;
+
 	use InteractsWithMedia;
 
 	protected $fillable = [

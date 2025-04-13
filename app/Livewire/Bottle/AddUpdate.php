@@ -9,7 +9,8 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class AddUpdate extends Component {
+class AddUpdate extends Component
+{
 	use WithFileUploads;
 
 	public BottleForm $form;

@@ -51,9 +51,7 @@ return $config
 		'cast_spaces' => true,
 		'class_attributes_separation' => [
 			'elements' => [
-				'const' => 'one',
 				'method' => 'one',
-				'property' => 'one',
 				'trait_import' => 'none',
 			],
 		],
@@ -150,6 +148,7 @@ return $config
 		'no_useless_return' => true,
 		'no_whitespace_before_comma_in_array' => true,
 		'no_whitespace_in_blank_line' => true,
+		'no_null_property_initialization' => false,
 		'normalize_index_brace' => true,
 		'not_operator_with_successor_space' => true,
 		'nullable_type_declaration' => true,

@@ -38,7 +38,7 @@ class CurrentTable extends Component
 	}
 
 	protected function query(): Builder {
-		$query = Bottle::query()
+		return Bottle::query()
 			->apply($this->filters, [
 				'applyOwner',
 				'applyVintage',
@@ -47,11 +47,9 @@ class CurrentTable extends Component
 			])
 			->with([
 				'purchases' => fn (Builder $query) => $query->where('user_id', auth()->id()),
-				'rating' => fn (Builder $q) => $q->where('user_id', auth()->id())
+				'rating' => fn (Builder $q) => $q->where('user_id', auth()->id()),
 			])
 			->orderBy($this->sortBy, $this->sortDirection)
 			->search('name', $this->search);
-
-		return $query;
 	}
 }
