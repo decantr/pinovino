@@ -17,7 +17,7 @@ class BottleForm extends Form
 	public $name;
 
 	#[Validate(['required', 'numeric', 'integer', 'min:1900', 'max:2050'])]
-	public $vintage = 2025;
+	public $vintage;
 
 	#[Validate([['required', new Enum(WineType::class)]])]
 	public $wine_type = WineType::Red;
