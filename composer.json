@@ -62,7 +62,8 @@
 			"git pull",
 			"composer install",
 			"bun install",
-			"bun run build"
+			"bun run build",
+			"php artisan migrate --force"
 		]
 	},
 	"extra": {
