@@ -1,7 +1,7 @@
 <div>
 	<div class="flex gap-y-3 mb-5">
 		<div>
-			<flux:heading>Wine Cellar</flux:heading>
+			<flux:heading size="xl">Wine Cellar</flux:heading>
 			<flux:subheading>Wines currently in your collection</flux:subheading>
 		</div>
 
