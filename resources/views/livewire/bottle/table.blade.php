@@ -46,19 +46,7 @@
 					</flux:table.cell>
 
 					<flux:table.cell>
-						<flux:heading>
-							<x-bottle.wine-type
-								:wine_type="$row->wine_type"
-								size="sm"
-								inset="top bottom"
-								class="mr-2 min-w-12 justify-center"
-							/>
-							{{ $row->name }}
-						</flux:heading>
-						<flux:subheading>
-							{{ $row->country }}
-							<x-bottle.size :size="$row->size" />
-						</flux:subheading>
+						<x-bottle.table :bottle="$row" type />
 					</flux:table.cell>
 
 					<flux:table.cell>

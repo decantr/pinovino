@@ -17,7 +17,7 @@
 				Bottle
 			</flux:table.column>
 
-			<flux:table.column class="w-12">
+			<flux:table.column class="w-12 max-sm:hidden">
 				Type
 			</flux:table.column>
 
@@ -50,11 +50,10 @@
 					</flux:table.cell>
 
 					<flux:table.cell>
-						<x-bottle.name :bottle="$row->bottle" />
-						<flux:subheading>{{ $row->bottle->country }}</flux:subheading>
+						<x-bottle.table :bottle="$row->bottle" />
 					</flux:table.cell>
 
-					<flux:table.cell>
+					<flux:table.cell class="max-sm:hidden">
 						<x-bottle.wine-type
 							:wine_type="$row->bottle->wine_type"
 							size="sm"

@@ -41,16 +41,7 @@
 					</flux:table.cell>
 
 					<flux:table.cell>
-						<x-bottle.name :bottle="$row"/>
-						<div class="flex items-baseline gap-3">
-							<x-bottle.wine-type
-								:wine_type="$row->wine_type"
-								size="sm"
-								inset="top bottom"
-								class="h-5 sm:hidden"
-							/>
-							<flux:subheading>{{ $row->country }}</flux:subheading>
-						</div>
+						<x-bottle.table :bottle="$row" />
 					</flux:table.cell>
 
 					<flux:table.cell class="max-sm:hidden">
