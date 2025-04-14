@@ -8,7 +8,7 @@
 		:wine_type="$bottle->wine_type"
 		size="sm"
 		inset="top bottom"
-		:class="'h-5' . ($type ? '' : 'sm:hidden')"
+		:class="'h-5 ' . ($type ? '' : 'sm:hidden')"
 	/>
 
 	<flux:subheading>
