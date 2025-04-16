@@ -46,6 +46,12 @@
             :placeholder="__('Confirm password')"
         />
 
+		<flux:input
+			label="Referral Code"
+			required
+			wire:model="referral_code"
+			/>
+
         <div class="flex items-center justify-end">
             <flux:button type="submit" variant="primary" class="w-full">
                 {{ __('Create account') }}

@@ -53,6 +53,19 @@
 
 		<flux:spacer />
 
+		<flux:navlist>
+			@can('invite', \App\Models\User::class)
+				<flux:navlist.item
+					icon="user-plus"
+					:href="route('invite')"
+					:current="request()->routeIs('invite')"
+					wire:navigate
+				>
+					Invite
+				</flux:navlist.item>
+			@endcan
+		</flux:navlist>
+
 		<!-- Desktop User Menu -->
 		<flux:dropdown position="bottom" align="start">
 			<flux:profile

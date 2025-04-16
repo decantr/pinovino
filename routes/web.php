@@ -9,6 +9,9 @@ Route::get('/', fn () => redirect(route('dashboard')))->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 	Route::view('dashboard', 'dashboard')->name('dashboard');
+	Route::get('invite', \App\Livewire\User\Invite::class)
+		->can('invite', \App\Models\User::class)
+		->name('invite');
 
 	// bottle ==================================================================
 	Route::get('bottles', \App\Livewire\Bottle\Page::class)
@@ -29,7 +32,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 		->can('view-any', \App\Models\Rating::class)
 		->name('rating.index');
 
-	// from starter kit
+	// from starter kit ========================================================
 	Route::redirect('settings', 'settings/profile');
 
 	Route::get('settings/profile', Profile::class)->name('settings.profile');

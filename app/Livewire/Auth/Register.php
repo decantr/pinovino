@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Auth;
 
+use App\Models\ReferralCode;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,8 @@ class Register extends Component
 
 	public string $password_confirmation = '';
 
+	public string $referral_code = '';
+
 	/**
 	 * Handle an incoming registration request.
 	 */
@@ -29,9 +32,14 @@ class Register extends Component
 			'name' => ['required', 'string', 'max:255'],
 			'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
 			'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
+			'referral_code' => ['required', 'string', 'exists:referral_codes,code'],
 		]);
 
 		$validated['password'] = Hash::make($validated['password']);
+		$validated['referral_code_id'] = ReferralCode::query()
+			->where('code', $this->referral_code)
+			->firstOrFail()
+			->id;
 
 		event(new Registered(($user = User::create($validated))));
 
