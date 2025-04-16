@@ -37,6 +37,9 @@ class BottleForm extends Form
 	#[Validate(['required', new Enum(BottleSize::class)])]
 	public $size = BottleSize::Standard;
 
+	#[Validate(['nullable', 'numeric', 'min:0', 'max:100'])]
+	public $abv;
+
 	#[Validate([
 		'files' => ['nullable', 'array'],
 		'files.*' => ['image', 'mimes:jpeg,jpg,png,gif,webp'],

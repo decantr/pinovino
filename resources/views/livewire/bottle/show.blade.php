@@ -37,6 +37,19 @@
 					</flux:subheading>
 
 					<flux:subheading class="flex gap-2 flex-wrap">
+						@if($bottle->abv)
+							<div class="flex">
+								<flux:text variant="strong">
+									{{ $bottle->abv }}
+								</flux:text>
+								<flux:text>%</flux:text>
+							</div>
+						@endif
+
+						@if($bottle->abv && $bottle->size)
+							&middot;
+						@endif
+
 						@if($bottle->size)
 							<div class="flex">
 								<flux:text variant="strong">

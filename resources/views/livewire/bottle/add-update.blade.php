@@ -13,15 +13,14 @@
 				@endforeach
 			</flux:radio.group>
 
-			<div class="flex max-md:flex-wrap gap-6 mt-6 mb-3 items-end">
-				<div class="max-md:w-full min-w-64 flex-grow-1">
-					<flux:input
-						badge="Required"
-						label="Name"
-						required
-						wire:model="form.name"
-					/>
-				</div>
+			<flux:input
+				badge="Required"
+				label="Name"
+				required
+				wire:model="form.name"
+			/>
+
+			<div class="flex gap-6 mt-6 mb-3 items-end">
 
 				<div class="flex-1 min-w-28">
 					<flux:input
@@ -46,6 +45,13 @@
 							</flux:select.option>
 						@endforeach
 					</flux:select>
+				</div>
+
+				<div class="flex-1 min-w-28">
+					<flux:input.group label="ABV">
+						<flux:input wire:model="form.abv" type="number" step="0.01" />
+						<flux:input.group.suffix>%</flux:input.group.suffix>
+					</flux:input.group>
 				</div>
 			</div>
 		</flux:fieldset>
