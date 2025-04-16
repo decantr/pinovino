@@ -12,8 +12,39 @@
 						<flux:text class="inline! tabular-nums">{{ $bottle->vintage }}</flux:text>
 					</flux:heading>
 
-					<flux:subheading>
-						{{ $bottle->country }}
+					<flux:subheading class="flex gap-2 flex-wrap">
+						<flux:text>
+							{{ $bottle->country }}
+						</flux:text>
+
+
+						@if($bottle->region)
+							&middot;
+
+							<flux:text>
+								{{ $bottle->region }}
+							</flux:text>
+						@endif
+
+						@if($bottle->producer)
+							&middot;
+
+							<flux:text variant="strong">
+								{{ $bottle->producer }}
+							</flux:text>
+						@endif
+
+					</flux:subheading>
+
+					<flux:subheading class="flex gap-2 flex-wrap">
+						@if($bottle->size)
+							<div class="flex">
+								<flux:text variant="strong">
+									{{ $bottle->size }}
+								</flux:text>
+								<flux:text>cl</flux:text>
+							</div>
+						@endif
 					</flux:subheading>
 				</div>
 
