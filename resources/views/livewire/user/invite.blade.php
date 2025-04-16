@@ -16,13 +16,28 @@
 				</flux:text>
 
 				<div class="mt-6 max-w-md">
-					<flux:input.group label="Your Referral Code">
-						<flux:input :$value copyable readonly />
+					<flux:field>
+						<div class="flex">
+							<flux:label>Your Referral Code</flux:label>
 
-						<flux:button icon="arrow-path" wire:click="newCode">
-							New Code
-						</flux:button>
-					</flux:input.group>
+							<flux:spacer />
+
+							<flux:link
+								class="text-sm cursor-pointer"
+								x-on:click="$copy('{{ route('register', ['rf' => $value]) }}')"
+							>
+								Copy Link
+							</flux:link>
+						</div>
+
+						<flux:input.group>
+							<flux:input :$value copyable readonly />
+
+							<flux:button icon="arrow-path" wire:click="newCode">
+								New Code
+							</flux:button>
+						</flux:input.group>
+					</flux:field>
 				</div>
 
 				<div class="mt-3">

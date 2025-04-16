@@ -24,6 +24,10 @@ class Register extends Component
 
 	public string $referral_code = '';
 
+	public function mount() {
+		$this->referral_code = \request()->get('rf', '');
+	}
+
 	/**
 	 * Handle an incoming registration request.
 	 */

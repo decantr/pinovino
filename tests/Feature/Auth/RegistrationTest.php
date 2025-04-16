@@ -61,3 +61,17 @@ test('new users cannot register with an old referral', function () {
 
 	$this->assertGuest();
 });
+
+test('gets referral code from url', function () {
+	$referral = \App\Models\ReferralCode::factory()->create();
+
+	$this->get(route('register'))
+		->assertDontSee($referral->code);
+
+	$route = route('register', [
+		'rf' => $referral->code,
+	]);
+
+	$this->get($route)
+		->assertSee($referral->code);
+});
