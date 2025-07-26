@@ -6,21 +6,21 @@
         "dev": "vite"
     },
     "dependencies": {
-        "@tailwindcss/vite": "^4.1.3",
+        "@tailwindcss/vite": "^4.1.11",
         "autoprefixer": "^10.4.21",
-        "axios": "^1.8.4",
-        "concurrently": "^9.1.2",
-        "laravel-vite-plugin": "^1.2.0",
-        "tailwindcss": "^4.1.3",
-        "vite": "^6.2.6"
+        "axios": "^1.11.0",
+        "concurrently": "^9.2.0",
+        "laravel-vite-plugin": "^1.3.0",
+        "tailwindcss": "^4.1.11",
+        "vite": "^6.3.5"
     },
     "optionalDependencies": {
-        "@rollup/rollup-linux-x64-gnu": "^4.40.0",
-        "@tailwindcss/oxide-linux-x64-gnu": "^4.1.3",
-        "lightningcss-linux-x64-gnu": "^1.29.3"
+        "@rollup/rollup-linux-x64-gnu": "^4.45.3",
+        "@tailwindcss/oxide-linux-x64-gnu": "^4.1.11",
+        "lightningcss-linux-x64-gnu": "^1.30.1"
     },
     "devDependencies": {
-        "@shufo/prettier-plugin-blade": "^1.15.3",
-        "prettier": "^3.5.3"
+        "@shufo/prettier-plugin-blade": "^1.16.0",
+        "prettier": "^3.6.2"
     }
 }
