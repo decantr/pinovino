@@ -1,4 +1,4 @@
-<x-layouts.app :title="__('PinoVino')">
+<x-layouts::app :title="__('PinoVino')">
 	<div class="flex h-full w-full flex-1 flex-col gap-3 rounded-xl">
 		<livewire:dashboard.stats lazy />
 
@@ -6,4 +6,4 @@
 			<livewire:dashboard.wine-list />
 		</div>
 	</div>
-</x-layouts.app>
+</x-layouts::app>
