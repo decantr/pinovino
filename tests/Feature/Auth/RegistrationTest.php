@@ -1,77 +1,62 @@
 <?php
 
-use App\Livewire\Auth\Register;
-use Livewire\Livewire;
-
-uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Event;
 
 test('registration screen can be rendered', function () {
-	$response = $this->get('/register');
+	$response = $this->get(route('register'));
 
-	$response->assertStatus(200);
-});
-
-test('new users cannot register without referral', function () {
-	$response = Livewire::test(Register::class)
-		->set('name', 'Test User')
-		->set('email', 'test@example.com')
-		->set('password', 'password')
-		->set('password_confirmation', 'password')
-		->call('register');
-
-	$response->assertHasErrors([
-		'referral_code',
-	]);
-
-	$this->assertGuest();
+	$response->assertOk();
 });
 
 test('new users can register', function () {
+	Event::fake();
 	$referral = \App\Models\ReferralCode::factory()->create();
 
-	$response = Livewire::test(Register::class)
-		->set('name', 'Test User')
-		->set('email', 'test@example.com')
-		->set('password', 'password')
-		->set('password_confirmation', 'password')
-		->set('referral_code', $referral->code)
-		->call('register');
+	$response = $this->post(route('register.store'), [
+		'name' => 'John Doe',
+		'email' => 'test@example.com',
+		'password' => 'password',
+		'password_confirmation' => 'password',
+		'referral_code' => $referral->code,
+	]);
 
-	$response
-		->assertHasNoErrors()
+	$response->assertSessionHasNoErrors()
 		->assertRedirect(route('dashboard', absolute: false));
 
 	$this->assertAuthenticated();
+	Event::assertDispatched(Registered::class);
 });
 
 test('new users cannot register with an old referral', function () {
 	$referral = \App\Models\ReferralCode::factory()->create();
 	$referral->delete();
 
-	$response = Livewire::test(Register::class)
-		->set('name', 'Test User')
-		->set('email', 'test@example.com')
-		->set('password', 'password')
-		->set('password_confirmation', 'password')
-		->call('register');
-
-	$response->assertHasErrors([
-		'referral_code',
+	$response = $this->post(route('register.store'), [
+		'name' => 'John Doe',
+		'email' => 'test@example.com',
+		'password' => 'password',
+		'password_confirmation' => 'password',
 	]);
+
+	$response
+		->assertSessionHasErrors([
+			'referral_code',
+		]);
 
 	$this->assertGuest();
 });
 
 test('gets referral code from url', function () {
-	$referral = \App\Models\ReferralCode::factory()->create();
+	$referral = \App\Models\ReferralCode::factory()
+		->set('code', '__test-referral-code-foo')
+		->create();
 
-	$this->get(route('register'))
-		->assertDontSee($referral->code);
+	$response = $this->get(route('register'));
+	$response->assertDontSee($referral->code);
 
-	$route = route('register', [
+	$response = $this->get(route('register', [
 		'rf' => $referral->code,
-	]);
-
-	$this->get($route)
-		->assertSee($referral->code);
+	]));
+	$response->assertSee($referral->code);
 });
