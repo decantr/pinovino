@@ -27,6 +27,9 @@ class PurchaseFactory extends Factory
 		];
 	}
 
+	/**
+	 * @mago-ignore lint:prefer-static-closure
+	 */
 	public function setBottle(Bottle $bottle): self {
 		return $this->state(
 			fn (array $attributes) => [
@@ -35,6 +38,9 @@ class PurchaseFactory extends Factory
 		);
 	}
 
+	/**
+	 * @mago-ignore lint:prefer-static-closure
+	 */
 	public function setUser(User $user): self {
 		return $this->state(
 			fn (array $attributes) => [
