@@ -29,7 +29,7 @@ $pint = [
 	'blank_lines_before_namespace' => true,
 	'braces_position' => [
 		'control_structures_opening_brace' => 'same_line',
-		'functions_opening_brace' => 'same_line',
+		'functions_opening_brace' => 'next_line_unless_newline_at_signature_end',
 		'anonymous_functions_opening_brace' => 'same_line',
 		'classes_opening_brace' => 'next_line_unless_newline_at_signature_end',
 		'anonymous_classes_opening_brace' => 'next_line_unless_newline_at_signature_end',
@@ -39,7 +39,9 @@ $pint = [
 	'cast_spaces' => true,
 	'class_attributes_separation' => [
 		'elements' => [
+			'const' => 'one',
 			'method' => 'one',
+			'property' => 'one',
 			'trait_import' => 'none',
 		],
 	],
@@ -89,6 +91,10 @@ $pint = [
 	],
 	'native_function_casing' => true,
 	'native_type_declaration_casing' => true,
+	'new_with_parentheses' => [
+		'named_class' => false,
+		'anonymous_class' => false,
+	],
 	'no_alias_functions' => true,
 	'no_alias_language_construct_call' => true,
 	'no_alternative_syntax' => true,
@@ -130,13 +136,13 @@ $pint = [
 		'statements' => ['break', 'clone', 'continue', 'echo_print', 'return', 'switch_case', 'yield'],
 	],
 	'no_unneeded_braces' => true,
+	'no_unneeded_import_alias' => true,
 	'no_unreachable_default_argument_value' => true,
 	'no_unset_cast' => true,
 	'no_unused_imports' => true,
 	'no_useless_return' => true,
 	'no_whitespace_before_comma_in_array' => true,
 	'no_whitespace_in_blank_line' => true,
-	'no_null_property_initialization' => false,
 	'normalize_index_brace' => true,
 	'not_operator_with_successor_space' => true,
 	'nullable_type_declaration' => true,
@@ -145,6 +151,8 @@ $pint = [
 	'ordered_imports' => ['sort_algorithm' => 'alpha', 'imports_order' => ['const', 'class', 'function']],
 	'ordered_interfaces' => true,
 	'ordered_traits' => true,
+	'php_unit_method_casing' => ['case' => 'snake_case'],
+	'php_unit_set_up_tear_down_visibility' => true,
 	'phpdoc_align' => [
 		'align' => 'left',
 		'spacing' => [
@@ -192,6 +200,7 @@ $pint = [
 	],
 	'single_import_per_statement' => true,
 	'single_line_after_imports' => true,
+	'single_line_comment_spacing' => true,
 	'single_line_comment_style' => [
 		'comment_types' => ['hash'],
 	],
@@ -210,7 +219,7 @@ $pint = [
 	'type_declaration_spaces' => true,
 	'types_spaces' => true,
 	'unary_operator_spaces' => true,
-	'visibility_required' => [
+	'modifier_keywords' => [
 		'elements' => ['method', 'property'],
 	],
 	'whitespace_after_comma_in_array' => true,
@@ -223,6 +232,24 @@ $pint = [
 ];
 
 $custom = [
+	'braces_position' => [
+		'control_structures_opening_brace' => 'same_line',
+		'functions_opening_brace' => 'same_line', # 'next_line_unless_newline_at_signature_end',
+		'anonymous_functions_opening_brace' => 'same_line',
+		'classes_opening_brace' => 'next_line_unless_newline_at_signature_end',
+		'anonymous_classes_opening_brace' => 'next_line_unless_newline_at_signature_end',
+		'allow_single_line_empty_anonymous_classes' => false,
+		'allow_single_line_anonymous_functions' => false,
+	],
+	'class_attributes_separation' => [
+		'elements' => [
+			'const' => 'none', # 'one',
+			'method' => 'one',
+			# 'property' => 'one',
+			'trait_import' => 'none',
+		],
+	],
+	'no_null_property_initialization' => false,
 	'phpdoc_types_order' => [
 		'null_adjustment' => 'always_last',
 	],
