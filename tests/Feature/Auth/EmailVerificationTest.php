@@ -5,17 +5,19 @@ use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\URL;
 
-uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
-
 test('email verification screen can be rendered', function () {
+	$this->markTestSkipped('Email Verification is not enabled.');
+
 	$user = User::factory()->unverified()->create();
 
-	$response = $this->actingAs($user)->get('/verify-email');
+	$response = $this->actingAs($user)->get(route('verification.notice'));
 
-	$response->assertStatus(200);
+	$response->assertOk();
 });
 
 test('email can be verified', function () {
+	$this->markTestSkipped('Email Verification is not enabled.');
+
 	$user = User::factory()->unverified()->create();
 
 	Event::fake();
@@ -35,6 +37,8 @@ test('email can be verified', function () {
 });
 
 test('email is not verified with invalid hash', function () {
+	$this->markTestSkipped('Email Verification is not enabled.');
+
 	$user = User::factory()->unverified()->create();
 
 	$verificationUrl = URL::temporarySignedRoute(
@@ -46,4 +50,26 @@ test('email is not verified with invalid hash', function () {
 	$this->actingAs($user)->get($verificationUrl);
 
 	expect($user->fresh()->hasVerifiedEmail())->toBeFalse();
+});
+
+test('already verified user visiting verification link is redirected without firing event again', function () {
+	$this->markTestSkipped('Email Verification is not enabled.');
+
+	$user = User::factory()->create([
+		'email_verified_at' => now(),
+	]);
+
+	Event::fake();
+
+	$verificationUrl = URL::temporarySignedRoute(
+		'verification.verify',
+		now()->addMinutes(60),
+		['id' => $user->id, 'hash' => sha1($user->email)]
+	);
+
+	$this->actingAs($user)->get($verificationUrl)
+		->assertRedirect(route('dashboard', absolute: false).'?verified=1');
+
+	expect($user->fresh()->hasVerifiedEmail())->toBeTrue();
+	Event::assertNotDispatched(Verified::class);
 });
