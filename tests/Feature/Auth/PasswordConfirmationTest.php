@@ -1,8 +1,6 @@
 <?php
 
-use App\Livewire\Auth\ConfirmPassword;
 use App\Models\User;
-use Livewire\Livewire;
 
 uses(\Illuminate\Foundation\Testing\RefreshDatabase::class);
 
@@ -20,7 +18,7 @@ test('password can be confirmed', function () {
 	$this->actingAs($user);
 
 	$response = $this->post(route('password.confirm.store'), [
-		'password' => 'password'
+		'password' => 'password',
 	]);
 
 	$response
@@ -34,7 +32,7 @@ test('password is not confirmed with invalid password', function () {
 	$this->actingAs($user);
 
 	$response = $this->post(route('password.confirm.store'), [
-		'password' => 'wrong-password'
+		'password' => 'wrong-password',
 	]);
 
 	$response->assertSessionHasErrors(['password']);

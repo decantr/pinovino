@@ -11,15 +11,15 @@ use Laravel\Fortify\Contracts\CreatesNewUsers;
 
 class CreateNewUser implements CreatesNewUsers
 {
-	use PasswordValidationRules, ProfileValidationRules;
+	use PasswordValidationRules;
+	use ProfileValidationRules;
 
 	/**
 	 * Validate and create a newly registered user.
 	 *
 	 * @param  array<string, string>  $input
 	 */
-	public function create(array $input): User
-	{
+	public function create(array $input): User {
 		$validated = Validator::make($input, [
 			...$this->profileRules(),
 			'password' => $this->passwordRules(),
@@ -31,8 +31,6 @@ class CreateNewUser implements CreatesNewUsers
 			->firstOrFail()
 			->id;
 
-		$user = User::create($validated);
-
-		return $user;
+		return User::create($validated);
 	}
 }

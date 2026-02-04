@@ -17,8 +17,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class ReferralCode extends Model
 {
-    /** @use HasFactory<\Database\Factories\ReferralCodeFactory> */
-    use HasFactory;
+	/** @use HasFactory<\Database\Factories\ReferralCodeFactory> */
+	use HasFactory;
+
 	use SoftDeletes;
 
 	public function user(): BelongsTo {

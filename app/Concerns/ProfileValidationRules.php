@@ -10,10 +10,9 @@ trait ProfileValidationRules
 	/**
 	 * Get the validation rules used to validate user profiles.
 	 *
-	 * @return array<string, array<int, \Illuminate\Contracts\Validation\Rule|array<mixed>|string>>
+	 * @return array<string, array<int, array<mixed>|\Illuminate\Contracts\Validation\Rule|string>>
 	 */
-	protected function profileRules(?int $userId = null): array
-	{
+	protected function profileRules(?int $userId = null): array {
 		return [
 			'name' => $this->nameRules(),
 			'email' => $this->emailRules($userId),
@@ -23,20 +22,18 @@ trait ProfileValidationRules
 	/**
 	 * Get the validation rules used to validate user names.
 	 *
-	 * @return array<int, \Illuminate\Contracts\Validation\Rule|array<mixed>|string>
+	 * @return array<int, array<mixed>|\Illuminate\Contracts\Validation\Rule|string>
 	 */
-	protected function nameRules(): array
-	{
+	protected function nameRules(): array {
 		return ['required', 'string', 'max:255'];
 	}
 
 	/**
 	 * Get the validation rules used to validate user emails.
 	 *
-	 * @return array<int, \Illuminate\Contracts\Validation\Rule|array<mixed>|string>
+	 * @return array<int, array<mixed>|\Illuminate\Contracts\Validation\Rule|string>
 	 */
-	protected function emailRules(?int $userId = null): array
-	{
+	protected function emailRules(?int $userId = null): array {
 		return [
 			'required',
 			'string',

@@ -9,20 +9,18 @@ trait PasswordValidationRules
 	/**
 	 * Get the validation rules used to validate passwords.
 	 *
-	 * @return array<int, \Illuminate\Contracts\Validation\Rule|array<mixed>|string>
+	 * @return array<int, array<mixed>|\Illuminate\Contracts\Validation\Rule|string>
 	 */
-	protected function passwordRules(): array
-	{
+	protected function passwordRules(): array {
 		return ['required', 'string', Password::default(), 'confirmed'];
 	}
 
 	/**
 	 * Get the validation rules used to validate the current password.
 	 *
-	 * @return array<int, \Illuminate\Contracts\Validation\Rule|array<mixed>|string>
+	 * @return array<int, array<mixed>|\Illuminate\Contracts\Validation\Rule|string>
 	 */
-	protected function currentPasswordRules(): array
-	{
+	protected function currentPasswordRules(): array {
 		return ['required', 'string', 'current_password'];
 	}
 }

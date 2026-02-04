@@ -6,7 +6,6 @@ use App\Concerns\ProfileValidationRules;
 use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
@@ -18,16 +17,15 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 	 *
 	 * @param  array<string, string>  $input
 	 */
-	public function update(User $user, array $input): void
-	{
+	public function update(User $user, array $input): void {
 		Validator::make(
 			$input,
 			$this->profileRules(),
 		)->validateWithBag('updateProfileInformation');
 
 		if (
-			$input['email'] !== $user->email &&
-			$user instanceof MustVerifyEmail
+			$input['email'] !== $user->email
+			&& $user instanceof MustVerifyEmail
 		) {
 			$this->updateVerifiedUser($user, $input);
 		} else {
@@ -43,8 +41,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 	 *
 	 * @param  array<string, string>  $input
 	 */
-	protected function updateVerifiedUser(User $user, array $input): void
-	{
+	protected function updateVerifiedUser(User $user, array $input): void {
 		$user->forceFill([
 			'name' => $input['name'],
 			'email' => $input['email'],

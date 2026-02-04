@@ -10,8 +10,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
- * @package App\Models
- *
  * @property int $id
  * @property int $user_id
  * @property int $bottle_id

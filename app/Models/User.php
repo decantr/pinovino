@@ -26,7 +26,10 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 class User extends Authenticatable
 {
 	/** @use HasFactory<\Database\Factories\UserFactory> */
-	use HasFactory, Notifiable, TwoFactorAuthenticatable;
+	use HasFactory;
+
+	use Notifiable;
+	use TwoFactorAuthenticatable;
 
 	/**
 	 * The attributes that are mass assignable.
@@ -38,7 +41,7 @@ class User extends Authenticatable
 		'email',
 		'password',
 		'role',
-		'referral_code_id'
+		'referral_code_id',
 	];
 
 	/**
@@ -53,7 +56,6 @@ class User extends Authenticatable
 		'remember_token',
 	];
 
-
 	protected $casts = [
 		'email_verified_at' => 'datetime',
 		'password' => 'hashed',
@@ -63,22 +65,19 @@ class User extends Authenticatable
 	/**
 	 * Get the user's initials
 	 */
-	public function initials(): string
-	{
+	public function initials(): string {
 		return Str::of($this->name)
 			->explode(' ')
 			->take(2)
-			->map(fn(string $name) => Str::of($name)->substr(0, 1))
+			->map(fn (string $name) => Str::of($name)->substr(0, 1))
 			->implode('');
 	}
 
-	public function referralCode(): HasOne
-	{
+	public function referralCode(): HasOne {
 		return $this->hasMany(ReferralCode::class)->latest()->one();
 	}
 
-	public function referralCodes(): HasMany
-	{
+	public function referralCodes(): HasMany {
 		return $this->hasMany(ReferralCode::class);
 	}
 }
