@@ -7,7 +7,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
+/**
+ * @package App\Models
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $bottle_id
+ * @property Carbon $date
+ * @property MoneyCast $cost
+ * @property string $store
+ * @property string|null $notes
+ */
 class Purchase extends Model
 {
 	/** @use HasFactory<\Database\Factories\PurchaseFactory> */
