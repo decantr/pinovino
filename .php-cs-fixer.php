@@ -232,4 +232,7 @@ return $config
 			'identical' => false,
 			'less_and_greater' => false,
 		],
+		'phpdoc_types_order' => [
+			'null_adjustment' => 'always_last',
+		],
 	]);
