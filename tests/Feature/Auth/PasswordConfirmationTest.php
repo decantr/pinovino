@@ -19,23 +19,23 @@ test('password can be confirmed', function () {
 
 	$this->actingAs($user);
 
-	$response = Livewire::test(ConfirmPassword::class)
-		->set('password', 'password')
-		->call('confirmPassword');
+	$response = $this->post(route('password.confirm.store'), [
+		'password' => 'password'
+	]);
 
 	$response
-		->assertHasNoErrors()
+		->assertSessionHasNoErrors()
 		->assertRedirect(route('dashboard', absolute: false));
-})->todo();
+});
 
 test('password is not confirmed with invalid password', function () {
 	$user = User::factory()->create();
 
 	$this->actingAs($user);
 
-	$response = Livewire::test(ConfirmPassword::class)
-		->set('password', 'wrong-password')
-		->call('confirmPassword');
+	$response = $this->post(route('password.confirm.store'), [
+		'password' => 'wrong-password'
+	]);
 
-	$response->assertHasErrors(['password']);
-})->todo();
+	$response->assertSessionHasErrors(['password']);
+});
