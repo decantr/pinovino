@@ -5,6 +5,9 @@ build:
 	php artisan optimize:clear
 	php artisan optimize
 
+fmt:
+	./vendor/bin/php-cs-fixer fix
+
 test:
 	php artisan test --parallel
 
