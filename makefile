@@ -34,3 +34,4 @@ update:
 	rm composer.lock package-lock.json
 	composer install --no-dev --optimize-autoloader --classmap-authoritative
 	npm install --production --omit=dev
+	make build
