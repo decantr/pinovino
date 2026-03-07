@@ -1,8 +1,9 @@
 @props([
 	'media',
 ])
-<?php /** @var \App\Models\Media $media */ ?>
-<?php
+@php
+	/** @var \App\Models\Media $media */
+
 	// ensure avatars dont get warped
 	$attributes = $attributes->class([
 			match ($attributes->get('size')) {
@@ -14,7 +15,7 @@
 			},
 			'[&>img]:object-cover [&>img]:object-center',
 	]);
-?>
+@endphp
 <flux:avatar
 	:src="$media?->preview_url"
 	:$attributes
