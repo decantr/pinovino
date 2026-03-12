@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\RatingOwnerScope;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -19,6 +23,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  */
+#[ScopedBy(RatingOwnerScope::class)]
 class Rating extends Model
 {
 	use HasFactory;
@@ -49,5 +54,10 @@ class Rating extends Model
 
 	public function purchase(): BelongsTo {
 		return $this->belongsTo(Purchase::class);
+	}
+
+	#[Scope]
+	public function public(Builder $query): void {
+		$query->where('is_public', true);
 	}
 }

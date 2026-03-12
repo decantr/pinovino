@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Casts\MoneyCast;
+use App\Models\Scopes\OwnerScope;
+use Illuminate\Database\Eloquent\Attributes\ScopedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,6 +20,7 @@ use Illuminate\Support\Carbon;
  * @property string $store
  * @property string|null $notes
  */
+#[ScopedBy(OwnerScope::class)]
 class Purchase extends Model
 {
 	/** @use HasFactory<\Database\Factories\PurchaseFactory> */

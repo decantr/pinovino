@@ -9,11 +9,7 @@ use App\Models\User;
 class BottlePolicy
 {
 	public function viewAny(User $user): bool {
-		if ($user->role?->gte(UserRole::Admin)) {
-			return true;
-		}
-
-		return false;
+		return $user->role?->gte(UserRole::Reader);
 	}
 
 	public function view(User $user, Bottle $bottle): bool {
