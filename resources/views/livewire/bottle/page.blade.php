@@ -1,8 +1,10 @@
 <div>
 	<div class="flex">
 		<div>
-			<flux:heading size="xl">Wine Catalogue</flux:heading>
-			<flux:subheading>All bottles recorded</flux:subheading>
+			<flux:heading size="xl">Bottle Catalogue</flux:heading>
+			<flux:subheading>
+				All the bottles Pinovino users have added to the system
+			</flux:subheading>
 		</div>
 
 		<flux:spacer />

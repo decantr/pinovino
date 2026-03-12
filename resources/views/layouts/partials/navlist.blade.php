@@ -14,7 +14,7 @@
 		icon="list-bullet"
 		wire:navigate
 	>
-		Wine List
+		Bottle Catalogue
 	</flux:sidebar.item>
 @endcan
 
