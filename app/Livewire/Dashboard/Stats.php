@@ -26,19 +26,16 @@ class Stats extends Component
 
 	public function getBottleCount(): int {
 		return Purchase::query()
-			->where('user_id', \auth()->id())
 			->count('bottle_id');
 	}
 
 	public function getPurchaseCount(): int {
 		return Purchase::query()
-			->where('user_id', \auth()->id())
 			->count();
 	}
 
 	public function getRatingCount(): int {
 		return Rating::query()
-			->where('user_id', \auth()->id())
 			->count();
 	}
 }
