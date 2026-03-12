@@ -9,7 +9,11 @@ use App\Models\User;
 class BottlePolicy
 {
 	public function viewAny(User $user): bool {
-		return true;
+		if ($user->role?->gte(UserRole::Admin)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	public function view(User $user, Bottle $bottle): bool {
@@ -21,15 +25,15 @@ class BottlePolicy
 	}
 
 	public function update(User $user, Bottle $bottle): bool {
-		return $user->role?->gt(UserRole::User);
+		return $user->role?->gte(UserRole::User);
 	}
 
 	public function delete(User $user, Bottle $bottle): bool {
-		return $user->role?->gt(UserRole::Admin);
+		return $user->role?->gte(UserRole::Admin);
 	}
 
 	public function restore(User $user, Bottle $bottle): bool {
-		return $user->role?->gt(UserRole::Admin);
+		return $user->role?->gte(UserRole::Admin);
 	}
 
 	public function forceDelete(User $user, Bottle $bottle): bool {

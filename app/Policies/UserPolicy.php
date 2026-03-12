@@ -12,7 +12,7 @@ class UserPolicy
 	}
 
 	public function invite(User $user): bool {
-		return true;
+		return $user->role->gte(UserRole::User);
 	}
 
 	public function view(User $user, User $model): bool {

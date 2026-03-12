@@ -8,7 +8,11 @@ enum UserRole: int
 	case User = 10;
 	case Admin = 50;
 
-	public function gt(self $role): bool {
+	public function gte(self $role): bool {
 		return $this->value >= $role->value;
+	}
+
+	public function lte(self $role): bool {
+		return $this->value <= $role->value;
 	}
 }

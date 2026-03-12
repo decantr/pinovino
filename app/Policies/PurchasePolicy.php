@@ -9,11 +9,15 @@ use App\Models\User;
 class PurchasePolicy
 {
 	public function viewAny(User $user): bool {
-		return true;
+		if ($user->role?->gte(UserRole::Admin)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	public function view(User $user, Purchase $purchase): bool {
-		if ($user->role?->gt(UserRole::Admin)) {
+		if ($user->role?->gte(UserRole::Admin)) {
 			return true;
 		}
 
@@ -21,11 +25,11 @@ class PurchasePolicy
 	}
 
 	public function create(User $user): bool {
-		return $user->role?->gt(UserRole::User);
+		return $user->role?->gte(UserRole::User);
 	}
 
 	public function update(User $user, Purchase $purchase): bool {
-		if ($user->role?->gt(UserRole::Admin)) {
+		if ($user->role?->gte(UserRole::Admin)) {
 			return true;
 		}
 
@@ -33,7 +37,7 @@ class PurchasePolicy
 	}
 
 	public function delete(User $user, Purchase $purchase): bool {
-		if ($user->role?->gt(UserRole::Admin)) {
+		if ($user->role?->gte(UserRole::Admin)) {
 			return true;
 		}
 
@@ -41,7 +45,7 @@ class PurchasePolicy
 	}
 
 	public function restore(User $user, Purchase $purchase): bool {
-		if ($user->role?->gt(UserRole::Admin)) {
+		if ($user->role?->gte(UserRole::Admin)) {
 			return true;
 		}
 
